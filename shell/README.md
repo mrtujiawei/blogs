@@ -175,7 +175,7 @@ esac
   RS 输入记录分割符  
   ORS 输出
 
-8. 流程控制
+8. 流程控制  
 
   `{if($1>5)print $0; else print $2)}`
 

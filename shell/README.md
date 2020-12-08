@@ -140,7 +140,7 @@ esac
 
 ## awk编辑器 ##
 
-读取数据一行一行处理,输入多个命令用;分割
+读取数据一行一行处理,输入多个命令用;分割  
 `awk [option] [BEGIN] {program} [END] file`
 
 1. 数据提取(列)
@@ -167,6 +167,7 @@ esac
   `模糊匹配 ~`
 
 7. awk 环境变量
+
   `BEGIN{FILEDWIDTHS="1 2 3"}`  
   第一列列宽1 第二列2  
   FS 输入字段分割符  
@@ -175,29 +176,13 @@ esac
   ORS 输出
 
 8. 流程控制
+
   `{if($1>5)print $0; else print $2)}`
 
-  `{if($1>5)
-    print $0
-  else
-    print @2
-  }`
-  
   `{for(i=1;i<4;i++){print $i}print "end"}`
 
-  `{for(i=1;i<4;i++)
-    print $i
-  }`
-
   `{i=1;sum=0;while(i<4){sum+=$i;i++}print sum}`
-  `{sum=0
-  i=1
-  while (i<4) {
-    sum+=$i
-    i++
-  }
-  print sum
-  }`
+
 9. 小技巧
   打印行号 `{print NR}`  
   打印最后一行 `END{print $0}`  

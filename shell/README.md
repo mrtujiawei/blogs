@@ -187,3 +187,11 @@ esac
   打印行号 `{print NR}`  
   打印最后一行 `END{print $0}`  
   打印列数 `NED{print NF}`  
+
+## ffmpeg ##
+
+1. 下载m3u8转mp4  
+`ffmpeg -i 'url' -threads 5 -preset ultrafast xxx.mp4`
+
+2. 转mp4到m3u8  
+`ffmpeg -i qinruzhe.mp4 -codec copy -vbsf h264_mp4toannexb -map 0 -f segment -segment_list qinruzhe.m3u8 -segment_time 9 qinruzhe_%0d.ts`

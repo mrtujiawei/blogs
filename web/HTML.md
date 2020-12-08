@@ -92,7 +92,7 @@ html相关的东西
 
 ```html
 <!-- 苹果覆盖背景色,主要是viewport-fit=cover -->
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,user-scalable=no,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,viewport-fit=cover">
 
 <!-- 苹果手机：会删除默认的工具栏和菜单栏，网站开启对web app的支持 -->
 <meta name="apple-mobile-web-app-capable" content="yes" />

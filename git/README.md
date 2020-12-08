@@ -1,6 +1,11 @@
 # Git 操作 #
 
-因为经常搞错`git branch` 和 git checkout`,所以在这里做个记录
+## 提升github下载速度 ##
+
+1. 倒入gitee 然后下载  
+2. 改镜像 在github.com后面加后缀: github.com.cnpmjs.org
+
+因为经常搞错`git branch` 和 `git checkout`,所以在这里做个记录
 
 ## git branch ##
 

@@ -3,11 +3,11 @@
 DOMParser  =>  parseFromString 装字符串为dom文档
 dom.replaceWidh => 替换元素
 element.compareDocumentPosition(otherElemnt) 比较位置关系
-1.不在同一个文档内
-2.前
-4.后
-8.包含
-16.被包含
+1. 不在同一个文档内
+2. 前
+4. 后
+8. 包含
+16. 被包含
 ```
 
 判断是否包含指定的选择器
@@ -472,30 +472,6 @@ Vue.directive('color', {
     el.style.color = '#f0f';
   }
 })
-```
-
-## 过滤器 ##
-
-```javascript
-Vue.filter('to-uppercase', function(value) {
-  return value.toUpperCase();
-});
-```
-## 使用 ##
-
-```html
-{{ name | to-uppercase }}
-```
-
-## 局部的过滤器 ##
-
-```javascript
-// 在局部的vue实例中使用filters
-filters : {
-  'to-uppercase': function (value) {
-    return value.toUpperCase();
-  }
-}
 ```
 
 ## 监听子组件的声明周期 ##

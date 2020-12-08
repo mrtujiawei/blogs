@@ -1,5 +1,7 @@
 # CSS #
 
+纯css效果: https://lhammer.cn/You-need-to-know-css/#/zh-cn/
+
 ## 视口相关 ##
 
 * 布局视口: `documnet.documentElement.clientWidth`
@@ -67,6 +69,49 @@ meta.content = `initial-scale=${scale},maximum-scale=${scale},minimum-scale=${sc
 
 ## 特殊样式 ##
 
+- 背景颜色只显示在字上
+```css
+background-clip: text;
+```
+- 1物理像素
+
+```css
+background: url(
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' rx='5' fill='none' stroke='red' /></svg>"
+);
+```
+
+- 如果字体不居中，可以试试 
+
+```css
+leading-trim: both;
+```
+
+- 指定多列
+```css
+columns 可以指定一列最多一个字符
+```
+
+- 背景混合
+```css
+  background-blend-mode: overlay;
+  background-blend-mode: screen;
+  background-blend-mode: multiply;
+```
+
+- 倒影
+
+```css
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0003);
+```
+
+- 没有内容的a标签自动填充href
+
+```css
+a[href^=http]:empty::before {
+  content: attr(href);
+}
+```
 - 隐藏滚动条
 
 ```css

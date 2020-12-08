@@ -73,3 +73,18 @@ registry=https://registry.npm.taobao.org
 15. spy-debugger
 
 16. 移动端调试 `eruda`
+
+## 手机端全屏库 ##
+- fullPage.js
+
+- leaflet 交互图
+
+- anime.js
+
+- screenfull.js 全屏功能
+
+- hammer.js 多点触摸手势
+
+- D3.js 数据可视化
+
+- fullpage.js 

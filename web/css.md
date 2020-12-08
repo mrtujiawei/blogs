@@ -1,7 +1,5 @@
 # CSS #
 
-CSS 相关的东西
-
 ## 视口相关 ##
 
 * 布局视口: `documnet.documentElement.clientWidth`

@@ -43,7 +43,7 @@ React.children.map(props.children, (element, index) => {
 
 24. vue keep-alive 中的include exclude 中的name是组件上的name属性，不是router上的name属性
 
-25. 尽量不要直接使用undefined 因为可以认为改变，建议void 0
+25. 尽量不要直接使用undefined 因为可以人为改变，建议void 0
 
 26. typescript const enum 编译后会直接没有，减少代码量
 
@@ -212,4 +212,3 @@ new AddAssetHtmlWebpackPlugin({
 68. React: 尽量使用无状态组件，这样渲染效率比较高，因为不需要触发生命周期函数
 
 69. React: 组件也是数据
-

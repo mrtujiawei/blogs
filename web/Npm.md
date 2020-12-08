@@ -15,6 +15,7 @@ export function loadable(component) {
     });
 }
 ```
+
 3. 图表组件
 
 * `echars` canvas
@@ -42,6 +43,7 @@ registry=https://registry.npm.taobao.org
 8. `CSS 特殊样式` `http://css-tricks.neatbang.com/`
 
 9. 动画库
+
 - Three.js
 
 - Mo.js
@@ -67,20 +69,6 @@ registry=https://registry.npm.taobao.org
 - animation.css
 
 - CSS-Inspiration(https://chokcoco.github.io/CSS-Inspiration/#/)
-
-10. 切换淘宝镜像: `npm config set registry http://registry.npm.taobao.org/`
-
-11. 切换官方镜像 `npm config set registry https://registry.npmjs.org/`
-
-12. 模块发布
-
-  1. `npm login`
-  2. `npm publish` 每次发布都需要修改版本号
-  3. `npm unpublish package-name`
-
-13. react项目初始化 `npm init react-app ts-react --template typescript`
-
-14. vue添加单元测试: vue add @vue/unit-mocha
 
 15. spy-debugger
 

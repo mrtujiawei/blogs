@@ -9,10 +9,10 @@ import Loadable from 'react-loadable';
  * component: () => import(src);
  */
 export function loadable(component) {
-    return Loadable({
-        loading: () => null,
-        loader: component,
-    });
+  return Loadable({
+    loading: () => null,
+    loader: component,
+  });
 }
 ```
 
@@ -75,6 +75,7 @@ registry=https://registry.npm.taobao.org
 16. 移动端调试 `eruda`
 
 ## 手机端全屏库 ##
+
 - fullPage.js
 
 - leaflet 交互图

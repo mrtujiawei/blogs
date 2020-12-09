@@ -2,25 +2,15 @@
 
 19. React.memo(functionComponent) 缓存函数组件(组件只和传入的参数有关)
 
-20. useState useEffect useCallback useReducer useContext
-
-21. useEffect(fn, [val]) 只有val变的时候才会update fn返回值为释放资源的回调
-
-22. useCallback(fn, [val]) 同上
+20. useCallback useReducer useContext
 
 23. let [state, dispatch] = useReducer(reducer: function, initialValue);
 
 24. vue keep-alive 中的include exclude 中的name是组件上的name属性，不是router上的name属性
 
-25. 尽量不要直接使用undefined 因为可以人为改变，建议void 0
-
-26. typescript const enum 编译后会直接没有，减少代码量
-
 29. addEventListener(eventName, obj.method) 中method的this指向obj
 
 30. Vue事件修饰符会将除第一个参数以外的参数丢失
-
-31. typescript keyof obj 可以获取对象的全部key作为类型
 
 32. webpack ts-loader option transpileOnly 加快编译速度
 
@@ -104,17 +94,6 @@
 59. thread-loader 一般给babel-loader用 use: ['thread-loader', {loader: '...'}] 开进程可能需要很长时间
 
 60. externals 不会被打包进bundles.js
-```javascript
-// 不再需要CdnWebpackPlugin了
-module.exports = {
-    externals: {
-        // 库名: 包名
-        jquery: 'jQuery'
-    }
-}
-```
-
-61. 多入口  entry 中写对象
 
 62. 
 ```javascript

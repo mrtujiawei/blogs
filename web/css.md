@@ -69,6 +69,22 @@ meta.content = `initial-scale=${scale},maximum-scale=${scale},minimum-scale=${sc
 
 ## 特殊样式 ##
 
+```css
+:placeholder-show {
+  /*
+    当强输入没有输入内容
+    显示占位文本的输入框
+    与:not连用可以实现浮动标签的效果 
+  */
+}
+
+/* transition可以分别设置多个属性 */
+transition: property delay, property delay;
+
+/* 文字描边 */
+-webkit-text-stroke: 2px black;
+
+```
 - 背景颜色只显示在字上
 ```css
 background-clip: text;

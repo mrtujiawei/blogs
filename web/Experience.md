@@ -1,14 +1,5 @@
 6. PureComponent做浅比较，如果数据没变不会重新渲染
 
-16. 
-```javascript
-React.children.map(props.children, (element, index) => {
-        console.log(element.props);
-        return { element }
-    });
-```
-17. redux 中 dispatch type 会触发所有相同的type，所以type必须不同，因此最好严格遵守第9条
-
 19. React.memo(functionComponent) 缓存函数组件(组件只和传入的参数有关)
 
 20. useState useEffect useCallback useReducer useContext

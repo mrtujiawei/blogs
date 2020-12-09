@@ -10,9 +10,6 @@
 ## 常用命令 ##
 
 ```bash
-# 返回上次的工作路径
-cd -
-
 # 计算 只有整数可以
 expr num op num
 
@@ -195,3 +192,8 @@ esac
 
 2. 转mp4到m3u8  
 `ffmpeg -i qinruzhe.mp4 -codec copy -vbsf h264_mp4toannexb -map 0 -f segment -segment_list qinruzhe.m3u8 -segment_time 9 qinruzhe_%0d.ts`
+
+## ssh ##
+
+1. ssh端口(9229)映射到本地9221  
+`ssh -L 9221:127.0.0.1:9229 tujiawei@192.168.3.34`

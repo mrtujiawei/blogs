@@ -268,7 +268,7 @@ mix-bleen-mode: screen;
   column-rule: 1px solid #ccc;
 }
 ```
-## css 属性值后的参数 ##
+## css属性值后的参数 ##
 
 ### 多个参数的情况 ###
 
@@ -276,7 +276,7 @@ mix-bleen-mode: screen;
 
 *  上（左右）下（3个）
 
-*   （上下）（左右）（2个）
+*  （上下）（左右）（2个）
 
 ### 属性计算 ###
 

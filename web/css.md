@@ -415,3 +415,160 @@ h3:before {
 7. 堆叠级别为正值的堆叠上下文
 
 > 每个堆叠上下文互相独立,不能相互穿插
+
+## grid 布局 ##
+
+```css
+.grid {
+
+  /**
+   * 定义 grid 布局
+   */
+  display: grid;
+
+  /**
+   * 每列的宽度 
+   * repeat(auto-fill, 100px);
+   * 1fr 2fr; 比例，后一个是前一个的两倍
+   * minmax(100px, 1fr); 长度范围 100px ~ 1fr
+   * auto; 浏览器决定
+   * [c1] 100px [c2] 200px [c3] 300px; 网格线名称
+   */
+  grid-template-columns: 100px 100px 100px;
+
+  /**
+   * 每行的宽度
+   * 
+   */
+  grid-template-rows: repeat(3, 100px);
+
+  /**
+   * 行间隔
+   */
+  grid-row-gap: 20px;
+
+  /**
+   * 列间隔
+   */
+  grid-column-gap: 20px;
+
+  /**
+   * 间隔
+   */
+  grid-gap: 20px 20px;
+
+  /**
+   * 给单元格命名
+   * 用不上的用 `.`
+   * 会影响网格线名称
+   * 变为xx-start xx-end
+   */
+  grid-template-areas: 'a b c'
+                       'd e f'
+                       'g h i';
+  
+  /**
+   * 优先排列 (row: 行)
+   * row dense; dense 尽可能填满，尽量不出现空格
+   * column dense; 
+   */
+  grid-auto-flow: column;
+
+  /**
+   * 水平对齐方式
+   * start | end | center | stretch
+   */
+  justify-items: start;
+
+  /**
+   * 垂直对齐方式
+   * start | end | center | stretch
+   */
+  align-items: end;
+
+  /**
+   * <align-items> <justify-items>;
+   */
+  place-items: center stretch;
+
+  /**
+   * 整个区域内容的水平位置
+   */
+  justify-content: center;
+  
+  /**
+   * 整个区域内容的垂直位置
+   */
+  align-items: space-between;
+
+  /**
+   * <justify-content> <align-items>
+   */
+  place-content: center space-between;
+
+  /**
+   * 浏览器自动生成的多余的网格高度
+   */
+  grid-auto-columns: 50px;
+
+  /**
+   * 浏览器自动生成的多余的网格宽度
+   */
+  grid-auto-rows: 50px;
+
+  /**
+   * grid-template <grid-template-columns> <grid-template-rows> <grid-template-areas>;
+   *
+   * grid: <grid-template-rows> <grid-template-columns> <grid-template-areas> <grid-auto-rows> <grid-auto-columns> <grid-auto-flow>;
+   */
+}
+
+.grid .grid-item {
+  /**
+   * 项目的位置对应的左网格线
+   * 下标从1开始
+   * 可以制定为网格线名字
+   * span 2; 跨越两个网格
+   */
+  grid-column-start: 2;
+
+  /**
+   * 右网格线
+   */
+  grid-column-end: 4;
+
+  /**
+   * 上网格线
+   */
+   grid-row-start: 1;
+
+   /**
+    * 下网格线
+    */
+    grid-row-end: 2;
+    
+    /**
+     * grid-row: <grid-row-start> <grid-row-end>;
+     * grid-column: <grid-column-start> <grid-column-end>;
+     */
+  /**
+   * 指定放置的单元格,或:
+   * grid-area: <row-start> / <column-start> / <row-end> / <column-end>;
+   */
+    grid-area: e;
+
+    /**
+     * 单元格内水平对齐方式
+     */
+    justify-self: start;
+    
+    /**
+     * 垂直对齐方式
+     */
+    align-self: end;
+
+    /**
+     * place-self: <justify-self> <align-self>;
+     */
+}
+```

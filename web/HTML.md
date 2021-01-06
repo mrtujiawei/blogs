@@ -155,3 +155,104 @@ html相关的东西
 - document结点 =>　9
 
 - documentFragment => 11
+
+## HTML Element ##
+```html
+<img
+  src=""
+  alt=""
+  sizes="(max-width: 500px) 100px, ..."
+  srcset="./images/1.jpg 100w"
+>
+
+<!--
+  form上面加的属性可以直接加在提交按钮上
+  指定提交到不同的地址，可以改
+  formaction formenctype formmethod ...
+-->
+<input type="button" formaction="">
+
+<!--
+  不明状态
+  还不完善，需要用js指定
+  indeterminate=true
+-->
+<input type="checkbox" indeterminate>
+
+<!--
+  提交按钮用图片显示
+  其他所有属性和img相同
+-->
+<input type="image" alt="提交">
+
+<!--
+  list 为对应datalist的id
+  autocomplete 也可以使用
+-->
+<input type="" list="datalist">
+<datalist id="datalist">
+  <option value="1">alskdfj</option>
+</datalist>
+
+<!-- 指定input 验证 -->
+<input
+  type="text"
+  name="username"
+  pattern="[a-z]{3}"
+  title="请输入三个小写英文字母"
+>
+
+<!-- 表示一块独立内容 -->
+<figure>
+  <figcaption>标题</figcaption>
+  <!-- 内容 -->
+</figure>
+
+<details>
+  <summary>总结</summary>
+  <p>条目</p>
+</details>
+
+<p>
+  Sit beatae
+  <mask>高亮显示</mask>
+  similique magni illum.
+</p>
+<ol start="3" reversed>
+  <li>a</li>
+  <li>a</li>
+  <li>a</li>
+  <li>a</li>
+  <li>a</li>
+</ol>
+
+<dl>
+  <dt>a</dt>
+  <!-- 具体内容 -->
+  <dd>你好</dd>
+  <dt>b</dt>
+  <dd>Hello</dd>
+</dl>
+
+<!-- 引用 -->
+<cite></cite>
+
+<!-- 标识小字印刷体 -->
+<small>法律</small>
+
+<!-- 进度条 -->
+<progress
+  id="progress"
+  max="100"
+  value="0"
+></progress>
+
+<!-- 规定范围空间内的使用量 -->
+<meter
+  value="2"
+  min="2"
+  max="10"
+></meter>
+
+```
+

@@ -572,3 +572,13 @@ h3:before {
      */
 }
 ```
+
+```css
+.class-name {
+  /* 生成的单独的图层 */
+  will-change: transform;
+  /* 隔离指定内容的样式,布局和渲染 */
+  contain: strict;
+}
+```
+

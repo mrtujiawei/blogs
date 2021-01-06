@@ -193,6 +193,9 @@ esac
 2. 转mp4到m3u8  
 `ffmpeg -i qinruzhe.mp4 -codec copy -vbsf h264_mp4toannexb -map 0 -f segment -segment_list qinruzhe.m3u8 -segment_time 9 qinruzhe_%0d.ts`
 
+3. 同类型转换，不只mp3
+3. ffmpeg -i input.mp3 -ss hh:mm:ss -t hh:mm:ss -acodec copy output.mp3
+
 ## ssh ##
 
 1. ssh端口(9229)映射到本地9221  
@@ -202,3 +205,102 @@ esac
 
 <!-- 直接下载网页中的视频 -->
 you-get web-url
+
+## apt配置 ##
+
+```sh
+# 搜索软件包
+sudo apt-cache search package 
+
+# 重新安装
+sudo apt-get install package --reinstall 
+
+# 修复安装
+sudo apt-get -f install
+
+# 删除包及相关配置
+sudo apt-get remove package --purge
+
+# 安装相关的编译环境
+sudo apt-get build-dep package
+
+# 根新已安装的包
+sudo apt-get upgrade 
+
+# 生级系统
+sudo apt-get dist-upgrade
+
+# 了解该包的依赖
+sudo apt-cache depends package 
+
+# 查看该包被那些包依赖
+sudo apt-cache rdepends package
+
+# 下载该包的源代码
+sudo apt-get source package
+```
+
+## docker 配置 ##
+
+
+```shell
+sudo apt-get install docker.io
+
+# 修改镜像
+# /etc/docker/daemon.json
+
+```json
+  {
+    "registry-mirrors": [
+      "https://docker.mirrors.ustc.edu.cn", 
+      "https://reg-mirror.qiniu.com", 
+      "http://hub-mirror.c.163.com",
+      "https://docker.mirrors.ustc.edu.cn"
+    ]
+  }
+```
+
+# 修改镜像端口映射
+# 实际上是改iptable
+# 将容器的
+iptables -t nat -A  DOCKER -p tcp --dport 81 -j DNAT --to-destination 172.17.0.19:8012
+
+实际访问不能用localhost 需要用指定ip
+
+直接commit 之后再run比较简单
+```
+
+### 权限 ###
+
+> - 普通文件
+> d 目录
+> l 连接文件
+> c 字符设备
+> b 块文件
+
+用户权限:所在组权限:其他组用户权限
+如果是文件 1 表示硬连接
+如果是目录 表示该目录的子目录的个数
+
+文件大小，如果是目录，统一显示4096
+
+文件最后修改时间
+
+rwx 作用到目录时
+r 可以查看
+w 可以修改，目录内创建+删除+重命名目录
+x 可以进入目录
+
+chown 改变所有者
+chgrp 改变组
+
+### 运行级别 ###
+
+0. 关机
+1. 单用户(找回丢失密码)
+2. 多用户无网络服务
+3. 多用户网络服务
+4. 保留
+5. 图形界面
+6. 重启
+

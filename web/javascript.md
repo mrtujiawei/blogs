@@ -293,3 +293,78 @@ function shellSort(arr, compareTo = (a, b) => a - b) {
   }
 }
 ```
+
+webpack --profile --json > stats.json
+
+https://alexkuz.github.io/webpack-chart/
+
+代码大小分析
+
+```javascript
+// 根据source-map 分析
+// 需要安装source-map
+source-map-explorer build/*.js
+
+// 测试打包速度
+speed-measure-webpack-plugin
+
+// 虚拟滚动, 横向竖向都有
+react-window
+
+// 单页预渲染 
+react-snap
+
+// 暴露模块到全局变量
+expose-loader 
+use: 'expose-loader?$';
+
+// plugins 中加
+new webpack.ProvidePlugin({
+  $: 'jquery',
+});
+
+-! 禁用前置和正常loader
+! 禁用普通loader
+!! 禁用前置，后置，正常loader
+
+pitch 有返回值直接到上一个的noraml
+normal 
+
+// canvas 多个图层处理效果
+globalCompositeOperation = '';
+
+// createjs
+```
+
+## Tribute ##
+
+@功能实现,`tribute`
+
+
+```javascript
+// 获取对象的symbol属性
+Object.getOwnPropertySymbols(obj);
+// 获取对象的所有属性
+Reflect.ownKeys(obj);
+
+// 获取了 label 和 input 之后
+// 通过属性可以获取对应的 input 和 label
+label.control
+input.labels
+
+// 获取选中区域
+let selection = document.getSelection();
+// 获取选中区域内容
+if (selection.rangeCount > 0) {
+  html = "您选取了>" + selection.rangeCount + "<内容<br />";
+  for (let i = 0; i < selection.rangeCount; i++) {
+    let range = selection.getRangeAt(i);
+    html += "第" + (i + 1) + "段内容为<br />" + range;
+  }
+  console.log(html);
+}
+
+// 删除选中区域
+selection.deleteFromDocument();
+```
+

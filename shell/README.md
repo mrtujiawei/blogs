@@ -208,7 +208,7 @@ you-get web-url
 
 ## apt配置 ##
 
-```sh
+```shell
 # 搜索软件包
 sudo apt-cache search package 
 
@@ -238,18 +238,15 @@ sudo apt-cache rdepends package
 
 # 下载该包的源代码
 sudo apt-get source package
-```
 
 ## docker 配置 ##
 
 
-```shell
 sudo apt-get install docker.io
 
 # 修改镜像
 # /etc/docker/daemon.json
 
-```json
   {
     "registry-mirrors": [
       "https://docker.mirrors.ustc.edu.cn", 
@@ -258,7 +255,6 @@ sudo apt-get install docker.io
       "https://docker.mirrors.ustc.edu.cn"
     ]
   }
-```
 
 # 修改镜像端口映射
 # 实际上是改iptable

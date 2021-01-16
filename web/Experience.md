@@ -160,3 +160,5 @@ new AddAssetHtmlWebpackPlugin({
 68. React: 尽量使用无状态组件，这样渲染效率比较高，因为不需要触发生命周期函数
 
 69. React: 组件也是数据
+
+70. react-transition-group 动画插件

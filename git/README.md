@@ -80,3 +80,16 @@ feature-xxx（功能开发分支，在develop上创建分支，以自己开发�
 feature-xxx-fix(功能bug修复分支，feature分支合并之后发现bug，在develop上创建分支修复，之后合并回develop分支。PS:feature分支在申请合并之后，未合并之前还是可以提交代码的，所以feature在合并之前还可以在原分支上继续修复bug)
 hotfix-xxx（紧急bug修改分支，在master分支上创建，修复完成后合并到 master）
 ```
+
+```
+git bisect 查找错误出现的版本
+git bisect [bad|good]
+
+git blame 查看代码责任人
+
+git grep 查找指定的代码
+git log -SXXXX --oneline 查找代码引入的版本
+git log -GXXXX --oneline 改变记录
+git log -p --filename  文件提交记录
+git log -L :searchText:filename
+```

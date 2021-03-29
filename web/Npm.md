@@ -178,3 +178,35 @@ registry=https://registry.npm.taobao.org
           }
       });
 ```
+
+- 判断是横屏还是竖屏
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MediaQueryList</title>
+</head>
+<body>
+    <p></p>
+    <script>
+        var para = document.querySelector('p');
+        var mql = window.matchMedia('(max-width: 600px)');
+        mql.onchange = function (e) {
+            if (e.matches) {
+                /* the viewport is 600 pixels wide or less */
+                para.textContent = 'This is a narrow screen — less than 600px wide.';
+                document.body.style.backgroundColor = 'red';
+            } else {
+                /* the viewport is more than than 600 pixels wide */
+                para.textContent = 'This is a wide screen — more than 600px wide.';
+                document.body.style.backgroundColor = 'blue';
+            }
+        }
+    </script>
+</body>
+</html>
+
+```

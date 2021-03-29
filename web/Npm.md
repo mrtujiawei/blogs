@@ -89,3 +89,92 @@ registry=https://registry.npm.taobao.org
 - D3.js 数据可视化
 
 - fullpage.js 
+
+
+- exif.js 判断图片是否反转90度
+
+```javascript
+//此处省略HTML
+      var Orientation = null;
+      var canvasHead = '';
+      $('#fileBtn').on('change',function(){
+          var files = this.files[0];
+          var reader = new FileReader();
+          if(typeof FileReader == 'undefined'){
+              require('module/common/dialog').showToast('抱歉，您手机暂不支持');
+              return;
+          }else{
+              reader.readAsDataURL(files);
+          }
+          reader.onloadstart = function(){
+              require('module/common/dialog').showLoading('正在读取');
+          };
+          reader.onabort = function(){
+              require('module/common/dialog').hideLoading();
+              require('module/common/dialog').showToast('读取中断，请重试');
+              return false;
+          };
+          reader.onerror = function(){
+              require('module/common/dialog').hideLoading();
+              require('module/common/dialog').showToast('读取发生错误，请重试');
+              return false;
+          };
+          reader.onload = function(){
+              require('module/common/dialog').hideLoading();
+              require('module/common/dialog').showLoading('读取完成，玩命加载中');
+              if(reader.readyState == 2){
+                  var fileStr = reader.result;
+                  var image = new Image();
+                  image.src = fileStr;
+                  image.onload = function(){
+                      $('#preHead').addClass('preHead');
+                      var preHead_canvas = document.getElementById('preHead');
+                      var preHead_ctx = preHead_canvas.getContext('2d');
+                      $('.fileBtn').addClass('hide');
+                      //获取Orientation
+                      EXIF.getData(image, function() {
+                          Orientation = EXIF.getTag(image, 'Orientation');
+                      });
+                      //如果没有Orientation 则为Android
+                      if(!Orientation){
+                          preHead_canvas.width = image.width;
+                          preHead_canvas.height = image.height;
+                          preHead_ctx.drawImage(image, 0, 0, image.width, image.height);
+                      }
+                      //如果有Orientation 则为IOS
+                      else{
+                          switch (Orientation) {
+                              case 1:
+                                  preHead_canvas.width = image.width;
+                                  preHead_canvas.height = image.height;
+                                  preHead_ctx.drawImage(image, 0, 0, image.width, image.height);
+                                  break;
+                              case 3:
+                                  preHead_canvas.width = image.width;
+                                  preHead_canvas.height = image.height;
+                                  preHead_ctx.rotate(Math.PI);
+                                  preHead_ctx.drawImage(image, -image.width, -image.height, image.width, image.height);
+                                  break;
+                              case 6:
+                                  preHead_canvas.width = image.height;
+                                  preHead_canvas.height = image.width;
+                                  preHead_ctx.rotate(Math.PI / 2);
+                                  preHead_ctx.drawImage(image, 0, -image.height, image.width, image.height);
+                                  break;
+                              case 8:
+                                  preHead_canvas.width = image.height;
+                                  preHead_canvas.height = image.width;
+                                  preHead_ctx.rotate(3 * Math.PI / 2);
+                                  preHead_ctx.drawImage(image, -image.width, 0, image.width, image.height);
+                                  break;
+                          }
+                      }
+                      require('module/common/dialog').hideLoading();
+                      canvasHead = preHead_canvas.toDataURL();
+                      $('.cameraHead').attr('src',canvasHead);
+                      $('#preHead').removeClass('hide');
+                  };
+              }
+          }
+      });
+```

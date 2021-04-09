@@ -120,6 +120,9 @@ case $1 in
     echo "女朋友" ;;
 esac
 
+# scp
+# 复制远程电脑上的文件到本地
+scp {username}@{remote_url}:remote_path local_path
 ```
 
 ## 行编辑器sed ##

@@ -213,3 +213,5 @@ registry=https://registry.npm.taobao.org
 
 - Leaflet js 地图库 
 - @ffmpeg/ffmpeg 前端ffmpeg库，wasm，不需要安装
+
+- webpack resolveLoader loader查找路径，测试时比较有用

@@ -587,3 +587,9 @@ ios 有多个滚动容器时卡顿
 ```css
 -webkit-overflow-scrolling: touch;
 ```
+
+
+```css
+// viewport-fit=cover条件
+env(safe-area-inset-top);
+```

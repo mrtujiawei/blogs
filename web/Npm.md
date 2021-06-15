@@ -215,3 +215,5 @@ registry=https://registry.npm.taobao.org
 - @ffmpeg/ffmpeg 前端ffmpeg库，wasm，不需要安装
 
 - webpack resolveLoader loader查找路径，测试(自定义loader)时比较有用 
+- iconv-lite axios 爬虫乱码 设置responseType: 'arraybuffer', iconv.decode('data', 'charset');  
+- fanyi 终端翻译工具 fanyi bike

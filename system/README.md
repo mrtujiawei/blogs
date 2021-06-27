@@ -190,7 +190,7 @@ Light weight process,轻量级的进程，本质仍是进程(linux)。
 
 ### 线程控制原语 ###
 
-`pthread_selft`
+`pthread_self`
 1. `create`  
 2. `exit`   
 3. `join`  

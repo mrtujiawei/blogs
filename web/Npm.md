@@ -70,6 +70,8 @@ registry=https://registry.npm.taobao.org
 
 - CSS-Inspiration(https://chokcoco.github.io/CSS-Inspiration/#/)
 
+- animejs 轻量级的js动画库
+
 15. spy-debugger
 
 16. 移动端调试 `eruda`

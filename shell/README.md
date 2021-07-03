@@ -552,3 +552,8 @@ deploy-job:
   script:
     - echo "deploy"
 ```
+
+```bash
+# 打印所有环境变量
+printenv
+```

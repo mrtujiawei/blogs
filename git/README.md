@@ -93,3 +93,57 @@ git log -GXXXX --oneline 改变记录
 git log -p --filename  文件提交记录
 git log -L :searchText:filename
 ```
+
+## gitlib ci #
+
+安装gitlib runner  
+https://docs.gitlab.com/runner/install/linux-repository.html
+
+gitlab-runner install
+gitlab-runner start
+# 注册相关信息在gitlib setting里面
+gitlab-runner register
+# 激活
+gitlab-runner verify
+# 删除 
+gitlab-runner verify --delete --name [name]
+
+# 卸载
+sudo gitlab-runner uninstall
+
+# 重新安装
+sudo gitlab-runner install -u gitlab-runner
+
+# 权限不足修复
+ps aux|grep gitlab-runner  #查看当前runner用户
+sudo gitlab-runner uninstall  #删除gitlab-runner
+sudo gitlab-runner install --working-directory /home/gitlab-runner --user root   #安装并设置--user(例如我想设置为root)
+sudo service gitlab-runner restart  #重启gitlab-runner
+ps aux|grep gitlab-runner #再次执行会发现--user的用户名已经更换成root了
+
+# ci配置
+```
+stages:
+  - install
+  - build
+  - deploy
+cache: # 缓存
+  paths:
+  - node_modules
+  - build
+
+install-job:
+  stage: install
+  script:
+    - echo "install"
+
+build-job:
+  stage: build
+  script:
+  - echo "build"
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "deploy"
+```

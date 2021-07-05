@@ -593,3 +593,133 @@ ios 有多个滚动容器时卡顿
 // viewport-fit=cover条件
 env(safe-area-inset-top);
 ```
+### css灵感 ###
+
+1. you need to know css  
+2. css-inspiratioin   
+3. css ticks  
+4. spinkit  
+5. animista  
+
+## IPhone 适配 ##
+
+https://webkit.org/blog/7929/designing-websites-for-iphone-x/
+
+## CSS ##
+
+```css
+// 文字模糊
+.blur {
+  color: transparent;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5)
+}
+
+// 禁用鼠标事件，禁止图片长按保存
+.no-events {
+  pointer-events: none
+}
+
+// 禁用文字选择
+.unselect {
+  user-select: none;
+}
+
+// 文字渐变
+.text-gradient {
+  background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgb(63, 52, 219)), to(rgb(233, 86, 86)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// 手持设备定制特殊样式
+<link type="text/css" rel="stylesheet" href="handheldstyle.css" media="handheld">
+
+// 超出N行显示省略号
+.hide-text-n {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: n;
+  overflow: hidden
+}
+
+// 移动端顺畅滚动
+.scroll-touch {
+  -webkit-overflow-scrolling: touch
+}
+
+// 移动端pointer型元素，去除点击高光
+* {
+  -webkit-tap-highlight-color: transparent
+}
+
+// 清除浮动
+.clearfix::after {
+  content: '';
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both
+}
+
+// 使用伪元素扩大点击热区
+.btn {
+  position: relative
+}
+
+.btn::befoer{
+  content: "";
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  bottom: -1rem;
+  left: -1rem
+}
+
+// 伪元素换行
+.br::after{
+  content: "A";
+  white-space: pre
+}
+```
+
+```css
+/* 
+  <input class='switch-component' type='checkbox'>
+*/
+
+/* 背景层 */
+.switch-component {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #dadada;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  transition: all .2s ease;
+}
+
+/* 按钮 */
+.switch-component::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: all .2s ease;
+}
+
+/* 选中状态时，背景色切换 */
+.switch-component:checked {
+  background-color: #86c0fa;
+ }
+
+/* 选中状态时，按钮的位置移动 */
+.switch-component:checked::after {
+  left: 50%;
+}
+```

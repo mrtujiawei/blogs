@@ -1,5 +1,32 @@
 # DOCKER #
 
+## 安装 ## 
+
+`sudo apt-get install docker.io`
+
+## docker 配置 ##
+
+修改镜像  
+`/etc/docker/daemon.json`
+```json
+{
+  "registry-mirrors": [
+    "https://docker.mirrors.ustc.edu.cn", 
+    "https://reg-mirror.qiniu.com", 
+    "http://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn"
+  ]
+}
+```
+
+修改镜像端口映射,实际上是改iptable  
+```shell
+iptables -t nat -A  DOCKER -p tcp --dport 81 -j DNAT --to-destination 172.17.0.19:8012
+```
+实际访问不能用localhost 需要用指定ip  
+直接commit 之后再run比较简单  
+```
+
 ## 命令 ##
 
 | 命令             | 描述             |

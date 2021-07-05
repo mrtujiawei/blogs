@@ -367,4 +367,36 @@ if (selection.rangeCount > 0) {
 // 删除选中区域
 selection.deleteFromDocument();
 ```
+## google 工具 ##
 
+<a href="https://developers.google.cn/web">google developers web</a>
+
+## 性能指标 ##
+
+
+```
+lighthouse (npm; chromeDevTools)
+webPageTest
+
+## APIS ##
+
+* DNS 解析耗时: domainLookupEnd - domainLookupStart
+* TCP 连接耗时: connectEnd - connectStart
+* SSL 安全连接耗时: connectEnd - secureConnectionStart
+* 网络请求耗时 (TTFB): responseStart - requestStart
+* 数据传输耗时: responseEnd - responseStart
+* DOM 解析耗时: domInteractive - responseEnd
+* 资源加载耗时: loadEventStart - domContentLoadedEventEnd
+* First Byte时间: responseStart - domainLookupStart
+* 白屏时间: responseEnd - fetchStart
+* 首次可交互时间: domInteractive - fetchStart
+* DOM Ready 时间: domContentLoadEventEnd - fetchStart
+* 页面完全加载时间: loadEventStart - fetchStart
+* http 头部大小： transferSize - encodedBodySize
+* 重定向次数：performance.navigation.redirectCount
+* 重定向耗时: redirectEnd - redirectStart
+
+* 告诉浏览器这个元素提取到单独的图层里
+```css
+will-change: transform;
+```

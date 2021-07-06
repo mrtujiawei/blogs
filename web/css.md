@@ -723,3 +723,10 @@ https://webkit.org/blog/7929/designing-websites-for-iphone-x/
   left: 50%;
 }
 ```
+
+```css
+/* 适配深色模式 */
+@media (prefers-color-scheme: dark) {
+
+}
+```

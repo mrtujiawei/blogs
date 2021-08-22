@@ -573,3 +573,4 @@ const table2excel = (column, data, excelName) => {
 export default table2excel
 
 ```
+图片压缩 `https://github.com/fengyuanchen/compressorjs`

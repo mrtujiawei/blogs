@@ -197,7 +197,8 @@ scp {username}@{remote_url}:remote_path local_path
 `ffmpeg -i qinruzhe.mp4 -codec copy -vbsf h264_mp4toannexb -map 0 -f segment -segment_list qinruzhe.m3u8 -segment_time 9 qinruzhe_%0d.ts`
 
 3. 同类型转换，不只mp3
-3. ffmpeg -i input.mp3 -ss hh:mm:ss -t hh:mm:ss -acodec copy output.mp3
+  -t 指output.mp3的时长
+  ffmpeg -i input.mp3 -ss hh:mm:ss -t hh:mm:ss -acodec copy output.mp3
 
 ## ssh ##
 

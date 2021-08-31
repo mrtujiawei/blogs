@@ -574,3 +574,11 @@ export default table2excel
 
 ```
 图片压缩 `https://github.com/fengyuanchen/compressorjs`
+```
+
+```
+gsap 动画库
+https://greensock.com/3-release-notes
+pixi.js 、three.js
+
+```

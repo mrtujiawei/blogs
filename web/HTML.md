@@ -256,3 +256,162 @@ html相关的东西
 
 ```
 
+
+```html
+<!-- flip 动画优化 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            margin: 20px;
+            border: 1px solid #008c8c;
+            padding: 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        li {
+            margin: 0 20px 20px 0;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #f40;
+            flex: 0 0 auto;
+            background-color: rgba(0, 0, 255, .5);
+        }
+
+        button {
+            margin-left: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="j-add-btn">add</button>
+    <ul id="j-container">
+        <!-- <li>0</li> -->
+    </ul>
+
+
+    <script>
+        const container = document.querySelector('#j-container');
+        let timer = null;
+
+        document.querySelector('#j-add-btn').addEventListener('click', () => {
+            if (timer) {
+                return ;
+            }
+            timer = setTimeout(() => {
+                timer = null;
+            }, 510);
+
+            let lis = container.querySelectorAll('li');
+            // F
+            let firstBoundings = new Array(lis.length);
+            lis.forEach((li, index) => {
+                let bounding = li.getBoundingClientRect();
+                firstBoundings[index] = {
+                    x: bounding.x,
+                    y: bounding.y,
+                };
+            });
+            let li = document.createElement('li');
+            li.innerHTML = lis.length;
+            container.insertBefore(li, lis[0] || null);
+
+            // L
+            let lastBoundings = new Array(lis.length);
+            lis.forEach((li, index) => {
+                let bounding = li.getBoundingClientRect();
+                lastBoundings[index] = {
+                    x: bounding.x,
+                    y: bounding.y,
+                };
+            });
+
+            let cnt = 0;
+            lis.forEach((li, index) => {
+                let xOffset = firstBoundings[index].x - lastBoundings[index].x;
+                let yOffset = firstBoundings[index].y - lastBoundings[index].y;
+                if (0 == xOffset && 0 == yOffset) {
+                    return ;
+                }
+                li.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                console.log(cnt, index, xOffset, yOffset);
+                console.log(`translate(${xOffset}px, ${yOffset}px)`);
+                setTimeout(() => {
+                    li.style.transition = 'transform .5s';
+                    li.style.transform = 'translate(0, 0)';
+                    setTimeout(() => {
+                        li.style.transition = '';
+                        li.style.transform = '';
+                    }, 500);
+                }, 0);
+            });
+            console.log(firstBoundings, lastBoundings);
+            console.log(`-----${cnt}-----`);
+        });
+
+        container.addEventListener('click', e => {
+            if (e.target == container) {
+                return ;
+            }
+            let lis = container.querySelectorAll('li');
+            // F
+            let firstBoundings = new Array(lis.length);
+            lis.forEach((li, index) => {
+                let bounding = li.getBoundingClientRect();
+                firstBoundings[index] = {
+                    x: bounding.x,
+                    y: bounding.y,
+                };
+            });
+            let li = e.target;
+            container.removeChild(li);
+
+            // L
+            let lastBoundings = new Array(lis.length);
+            lis.forEach((li, index) => {
+                let bounding = li.getBoundingClientRect();
+                lastBoundings[index] = {
+                    x: bounding.x,
+                    y: bounding.y,
+                };
+            });
+
+            let cnt = 0;
+            lis.forEach((li, index) => {
+                let xOffset = firstBoundings[index].x - lastBoundings[index].x;
+                let yOffset = firstBoundings[index].y - lastBoundings[index].y;
+                if (0 == xOffset && 0 == yOffset) {
+                    return ;
+                }
+                li.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+                console.log(cnt, index, xOffset, yOffset);
+                console.log(`translate(${xOffset}px, ${yOffset}px)`);
+                setTimeout(() => {
+                    li.style.transition = 'transform .5s';
+                    li.style.transform = 'translate(0, 0)';
+                    setTimeout(() => {
+                        li.style.transition = '';
+                        li.style.transform = '';
+                    }, 500);
+                }, 0);
+            });
+            console.log(firstBoundings, lastBoundings);
+            console.log(`-----${cnt}-----`);
+        });
+    </script>
+</body>
+</html>
+```

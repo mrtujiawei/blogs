@@ -294,7 +294,8 @@ mix-bleen-mode: screen;
 
 3. 使用继承
 
-    - 能够继承的实行,使用父元素的属性
+    - 能够继承的属性,使用父元素的属性  
+    - 文字相关的属性  
 
 4. 使用默认值
 
@@ -352,6 +353,7 @@ div {
   /* 重置计数器成0 */
   counter-reset: title; 
 }
+
 h3:before {
   /* 增加计数器值 */
   counter-increment: title;

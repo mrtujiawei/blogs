@@ -732,3 +732,21 @@ https://webkit.org/blog/7929/designing-websites-for-iphone-x/
 
 }
 ```
+
+```css
+.wrap {
+  /**
+   * 强制滚动到下一屏
+   */
+  scroll-snap-type: y mandatory;
+
+  /**
+   * 达到一定距离后滚动到下一屏
+   */
+  scroll-snap-type: y proximity;
+}
+
+.wrap .child {
+  scroll-snap-align: start;
+}
+```

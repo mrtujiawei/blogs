@@ -345,3 +345,7 @@ ${var-val}
 ## printenv ##
 
 打印所有环境变量
+
+## aapt ##
+
+获取apk的信息

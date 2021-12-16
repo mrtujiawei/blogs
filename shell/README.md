@@ -205,6 +205,10 @@ scp {username}@{remote_url}:remote_path local_path
 1. ssh端口(9229)映射到本地9221  
 `ssh -L 9221:127.0.0.1:9229 tujiawei@192.168.3.34`
 
+2. 免密登录
+  1. 本地生成 ssh-key `ssh-keygen -t rsa`
+  2. 复制 id_rsa.pub 到远程 ~/.ssh/authorized_keys
+
 ## python ##
 
 <!-- 直接下载网页中的视频 -->

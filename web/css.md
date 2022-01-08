@@ -2,6 +2,9 @@
 
 纯css效果: https://lhammer.cn/You-need-to-know-css/#/zh-cn/
 
+> 可以用来实现各种奇怪的形状，但主体还是接近圆形的吧  
+border-radius效果: https://9elements.github.io/fancy-border-radius/
+
 ## 视口相关 ##
 
 * 布局视口: `documnet.documentElement.clientWidth`

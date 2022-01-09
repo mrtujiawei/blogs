@@ -7,9 +7,9 @@ const host = '192.168.3.102';
 
 const logger = (function getLogger() {
   const logger = Logger.getLogger();
-  
+
   logger.setLevel(Logger.LOG_LEVEL.ALL);
-  
+
   logger.subscribe((message) => {
     console.log(message);
   });

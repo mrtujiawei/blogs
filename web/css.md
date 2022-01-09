@@ -753,3 +753,7 @@ https://webkit.org/blog/7929/designing-websites-for-iphone-x/
   scroll-snap-align: start;
 }
 ```
+
+## animation ##
+
+`linear` => `step(n)` 跳跃式的变化

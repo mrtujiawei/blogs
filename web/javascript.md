@@ -582,3 +582,13 @@ https://greensock.com/3-release-notes
 pixi.js 、three.js
 
 ```
+
+```javascript
+function myNew(fn, ...args) {
+  const obj = {};
+  obj.__proto__ = fn.prototype;
+  fn.apply(fn, args);
+  return obj;
+};
+
+```

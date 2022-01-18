@@ -757,3 +757,15 @@ https://webkit.org/blog/7929/designing-websites-for-iphone-x/
 ## animation ##
 
 `linear` => `step(n)` 跳跃式的变化
+
+## 3d 翻转
+```
+perspective: 800px;
+transform-style:preserve-3d;
+
+```
+
+## z-index
+
+ios 中, 如果父级设置了 `-webkit-overflow-scrolling: touch;`, `z-index` 可能会出现问题
+`-webkit-overflow-scrolling: unset;` 

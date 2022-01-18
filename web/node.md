@@ -39,3 +39,13 @@ http.createServer(function (req, res) {
   }
 }).listen(4444);
 ```
+
+## 远程调试
+
+`node --inspect-brk=[ip:port] xxx.js`
+
+需要 chrome://inspect 配置 域名和ip
+
+## electron源码 加密
+
+[electron 代码加密](https://github.com/toyobayashi/electron-asar-encrypt-demo)

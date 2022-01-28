@@ -389,3 +389,18 @@ $ tmux
 关闭终端: `<C-b>x`  
 分屏模式切换: `<C-b><space>`  
 
+> 显示所有会话
+`tmux list-sessions`
+
+> 关闭服务(关闭所有会话)
+`tmux kill-server`
+
+
+> session之间跳转
+往下一个session跳: `<C-b>)`
+往上一个session跳: `<C-b>(`
+
+> 连接和断开session
+连接: tmux attach
+断开: tmux detach
+

@@ -380,7 +380,7 @@ $ screen
 开启分屏模式: 可以接受特定的快捷键
 
 ```sh
-$ tmux
+$ tmux [-c {some commands]
 ```
 
 > pane
@@ -408,6 +408,9 @@ $ tmux
 > 连接和断开session
 连接: tmux attach
 断开: tmux detach
+
+> 切换会话
+`tmux switch-client -t {name}`
 
 > 新建window -n window命名
 `tmux new-window [-n {name}]`  

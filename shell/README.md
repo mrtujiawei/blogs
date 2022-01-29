@@ -383,11 +383,14 @@ $ screen
 $ tmux
 ```
 
+> pane
 上下分屏: `<C-b>"`  
 左右分屏: `<C-b>%`  
 切换屏幕: `<C-b>o`  
 关闭终端: `<C-b>x`  
 分屏模式切换: `<C-b><space>`  
+显示窗口列表: `<C-b>w`
+断开连接: `<C-b>d`
 
 > 显示所有会话
 `tmux list-sessions`
@@ -395,6 +398,8 @@ $ tmux
 > 关闭服务(关闭所有会话)
 `tmux kill-server`
 
+> 新建会话 -d 后台创建 -s 给会话命名
+`tmux new-session [-d] [-s {name}]`
 
 > session之间跳转
 往下一个session跳: `<C-b>)`
@@ -403,4 +408,11 @@ $ tmux
 > 连接和断开session
 连接: tmux attach
 断开: tmux detach
+
+> 新建window -n window命名
+`tmux new-window [-n {name}]`  
+新建窗口: `<C-b>c`
+下一个窗口: `<C-b>n`  
+上一个窗口: `<C-b>p`  
+跳转到#窗口: `<C-b>#`  
 

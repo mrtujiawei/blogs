@@ -1,13 +1,13 @@
-# Shell #
+# Shell
 
-## 规范 ##
+## 规范
 
-* 变量尽量大写，区分函数  
-* unset 取消变量  
-* 全局变量需要export /etc/profile  
-* export GENDER="MALE"  
+- 变量尽量大写，区分函数
+- unset 取消变量
+- 全局变量需要 export /etc/profile
+- export GENDER="MALE"
 
-## 常用命令 ##
+## 常用命令
 
 ```bash
 # 计算 只有整数可以
@@ -70,7 +70,7 @@ declare -A arr
 arr=([gender]="male" [name]='tujiawei' [age]=20)
 arr[a]='b'
 
-#查看执行过程 
+#查看执行过程
 bash -x filename
 
 # cut 命令
@@ -102,7 +102,7 @@ done
 
 #seq
 # seq start step end
-# 从start 开始 start += step 
+# 从start 开始 start += step
 # 到end 为止
 
 # 函数定义
@@ -125,7 +125,8 @@ esac
 scp {username}@{remote_url}:remote_path local_path
 ```
 
-## 行编辑器sed ##
+## 行编辑器 sed
+
 ```bash
 # 命令
 # i 当前行上面添加
@@ -138,90 +139,91 @@ scp {username}@{remote_url}:remote_path local_path
 # 统计文件行号
 ```
 
-## awk编辑器 ##
+## awk 编辑器
 
 读取数据一行一行处理,输入多个命令用;分割  
 `awk [option] [BEGIN] {program} [END] file`
 
 1. 数据提取(列)
-  `$0` 正行文本  
-  `$1` 文本中第一个数据字段  
-  `$N` 第N个数据字段  
-  `$NF` 最后一个字段  
+   `$0` 正行文本  
+   `$1` 文本中第一个数据字段  
+   `$N` 第 N 个数据字段  
+   `$NF` 最后一个字段
 
 2. 数据提取(行)
-  `awk 'NR==3{print $0 " " $2};NR==5{print $0;print "end"}'`
+   `awk 'NR==3{print $0 " " $2};NR==5{print $0;print "end"}'`
 
 3. BEGIN END 使用
-  `awk 'BEGIN{print "Hello World"}{print "tujiawei"}END{print "process end"}' passwd`
+   `awk 'BEGIN{print "Hello World"}{print "tujiawei"}END{print "process end"}' passwd`
 
 4. awk 数组
-`{array[1]="tujiawei";array[2]=18}`
+   `{array[1]="tujiawei";array[2]=18}`
 
 5. 变量定义
-  `-v 'var=val'`  
-  `var++ var--`
+   `-v 'var=val'`  
+   `var++ var--`
 
-6. 匹配 
-  `$1=="root{print $0}"`  
-  `模糊匹配 ~`
+6. 匹配
+   `$1=="root{print $0}"`  
+   `模糊匹配 ~`
 
 7. awk 环境变量
 
-  `BEGIN{FILEDWIDTHS="1 2 3"}`  
-  第一列列宽1 第二列2  
-  FS 输入字段分割符  
-  OPS 输出字段分割符  
-  RS 输入记录分割符  
-  ORS 输出
+`BEGIN{FILEDWIDTHS="1 2 3"}`  
+ 第一列列宽 1 第二列 2  
+ FS 输入字段分割符  
+ OPS 输出字段分割符  
+ RS 输入记录分割符  
+ ORS 输出
 
-8. 流程控制  
+8. 流程控制
 
-  `{if($1>5)print $0; else print $2)}`
+`{if($1>5)print $0; else print $2)}`
 
-  `{for(i=1;i<4;i++){print $i}print "end"}`
+`{for(i=1;i<4;i++){print $i}print "end"}`
 
-  `{i=1;sum=0;while(i<4){sum+=$i;i++}print sum}`
+`{i=1;sum=0;while(i<4){sum+=$i;i++}print sum}`
 
 9. 小技巧
-  打印行号 `{print NR}`  
-  打印最后一行 `END{print $0}`  
-  打印列数 `NED{print NF}`  
+   打印行号 `{print NR}`  
+   打印最后一行 `END{print $0}`  
+   打印列数 `NED{print NF}`
 
-## ffmpeg ##
+## ffmpeg
 
-1. 下载m3u8转mp4  
-`ffmpeg -i 'url' -threads 5 -preset ultrafast xxx.mp4`
+1. 下载 m3u8 转 mp4  
+   `ffmpeg -i 'url' -threads 5 -preset ultrafast xxx.mp4`
 
-2. 转mp4到m3u8  
-`ffmpeg -i qinruzhe.mp4 -codec copy -vbsf h264_mp4toannexb -map 0 -f segment -segment_list qinruzhe.m3u8 -segment_time 9 qinruzhe_%0d.ts`
+2. 转 mp4 到 m3u8  
+   `ffmpeg -i qinruzhe.mp4 -codec copy -vbsf h264_mp4toannexb -map 0 -f segment -segment_list qinruzhe.m3u8 -segment_time 9 qinruzhe_%0d.ts`
 
-3. 同类型转换，不只mp3
-  -t 指output.mp3的时长
-  ffmpeg -i input.mp3 -ss hh:mm:ss -t hh:mm:ss -acodec copy output.mp3
+3. 同类型转换，不只 mp3
+   -t 指 output.mp3 的时长
+   ffmpeg -i input.mp3 -ss hh:mm:ss -t hh:mm:ss -acodec copy output.mp3
 
-## ssh ##
+## ssh
 
-1. ssh端口(9229)映射到本地9221  
-`ssh -L 9221:127.0.0.1:9229 tujiawei@192.168.3.34`
+1. ssh 端口(9229)映射到本地 9221  
+   `ssh -L 9221:127.0.0.1:9229 tujiawei@192.168.3.34`
 
 2. 免密登录
-  1. 本地生成 ssh-key `ssh-keygen -t rsa`
-  2. 复制 id_rsa.pub 到远程 ~/.ssh/authorized_keys
+3. 本地生成 ssh-key `ssh-keygen -t rsa`
+4. 复制 id_rsa.pub 到远程 ~/.ssh/authorized_keys
 
-## python ##
+## python
 
 <!-- 直接下载网页中的视频 -->
+
 you-get web-url
 
-## apt配置 ##
+## apt 配置
 
-```shell
+````shell
 # 搜索软件包
-sudo apt-cache search package 
+sudo apt-cache search package
 
 # 重新安装
-sudo apt-get install package --reinstall 
+sudo apt-get install package --reinstall
 
 # 修复安装
 sudo apt-get -f install
@@ -233,13 +235,13 @@ sudo apt-get remove package --purge
 sudo apt-get build-dep package
 
 # 根新已安装的包
-sudo apt-get upgrade 
+sudo apt-get upgrade
 
 # 生级系统
 sudo apt-get dist-upgrade
 
 # 了解该包的依赖
-sudo apt-cache depends package 
+sudo apt-cache depends package
 
 # 查看该包被那些包依赖
 sudo apt-cache rdepends package
@@ -284,7 +286,7 @@ chgrp 改变组
 
 ## 开源协议 ##
 
-> 左边 no  右边 yes  
+> 左边 no  右边 yes
 
 <pre>
                       修改代码后闭源
@@ -295,7 +297,7 @@ chgrp 改变组
       修改处加            GPL    字促销
       说明文档                  ↙        ↘
 ↙               ↘             BSD        MIT
-LGPL            Mozilla   
+LGPL            Mozilla
 </pre>
 
 
@@ -335,37 +337,36 @@ ${var//n/N}
 # 给没值的变量返回默认值
 # 不修改变量的值，相当于三元运算符
 ${var-val}
-```
+````
 
-## wait ##
+## wait
 
 如果有后台进程，`wait` 会等待后台进程完成后再执行 `wait` 之后的代码
 
+## xinetd
 
-## xinetd ##
+超级守护进程,linux 安全管理
 
-超级守护进程,linux安全管理
-
-## printenv ##
+## printenv
 
 打印所有环境变量
 
-## aapt ##
+## aapt
 
-获取apk的信息
+获取 apk 的信息
 
-## pr ##
+## pr
 
 格式化打印
 
-## screen ##
+## screen
 
 > 终端分屏
 
 开启分屏模式: 可以接受特定的快捷键
 
 ```sh
-$ screen 
+$ screen
 ```
 
 上下分屏: `<C-a><S-s>`  
@@ -373,7 +374,7 @@ $ screen
 新建终端: `<C-a>c`  
 关闭终端: `<C-a>x`
 
-## tmux ##
+## tmux
 
 > 终端分屏，支持上下左右
 
@@ -384,38 +385,45 @@ $ tmux [-c {some commands]
 ```
 
 > pane
-上下分屏: `<C-b>"`  
-左右分屏: `<C-b>%`  
-切换屏幕: `<C-b>o`  
-关闭终端: `<C-b>x`  
-分屏模式切换: `<C-b><space>`  
-显示窗口列表: `<C-b>w`
-断开连接: `<C-b>d`
+> 上下分屏: `<C-b>"`  
+> 左右分屏: `<C-b>%`  
+> 切换屏幕: `<C-b>o`  
+> 关闭终端: `<C-b>x`  
+> 分屏模式切换: `<C-b><space>`  
+> 显示窗口列表: `<C-b>w`
+> 断开连接: `<C-b>d`
+> 返回到上一个 session: `<C-b>l`
 
 > 显示所有会话
-`tmux list-sessions`
+> `tmux list-sessions`
 
 > 关闭服务(关闭所有会话)
-`tmux kill-server`
+> `tmux kill-server`
 
 > 新建会话 -d 后台创建 -s 给会话命名
-`tmux new-session [-d] [-s {name}]`
+> `tmux new-session [-d] [-s {name}]`
 
-> session之间跳转
-往下一个session跳: `<C-b>)`
-往上一个session跳: `<C-b>(`
+> session 之间跳转
+> 往下一个 session 跳: `<C-b>)`
+> 往上一个 session 跳: `<C-b>(`
 
-> 连接和断开session
-连接: tmux attach
-断开: tmux detach
+> 连接和断开 session
+> 连接: tmux attach
+> 断开: tmux detach
 
 > 切换会话
-`tmux switch-client -t {name}`
+> `tmux switch-client -t {name}`
 
-> 新建window -n window命名
-`tmux new-window [-n {name}]`  
-新建窗口: `<C-b>c`
-下一个窗口: `<C-b>n`  
-上一个窗口: `<C-b>p`  
-跳转到#窗口: `<C-b>#`  
+> 新建 window -n window 命名
+> `tmux new-window [-n {name}]`  
+> 新建窗口: `<C-b>c`
+> 下一个窗口: `<C-b>n`  
+> 上一个窗口: `<C-b>p`  
+> 跳转到#窗口: `<C-b>#`
 
+## tldr
+
+`apt install tldr`
+
+常见命令行用法
+[tldr command]

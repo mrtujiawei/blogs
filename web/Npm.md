@@ -219,3 +219,18 @@ registry=https://registry.npm.taobao.org
 - webpack resolveLoader loader查找路径，测试(自定义loader)时比较有用 
 - iconv-lite axios 爬虫乱码 设置responseType: 'arraybuffer', iconv.decode('data', 'charset');  
 - fanyi 终端翻译工具,需要安装依赖 `sudo apt-get install festival festvox-kallpc16k`,用法: fanyi bike
+
+## 发布 beta 版本
+
+在 package.json 里面改版本号
+`版本号-beta.0` x.x.x-beta.0
+
+## 安装 beta 版本
+
+`npm i packageName@beta`
+
+
+## 脚本预处理
+
+package.json 自动控制的流程:  
+`pre{cmd}` => `{cmd}` => `post{cmd}`

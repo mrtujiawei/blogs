@@ -220,6 +220,10 @@ registry=https://registry.npm.taobao.org
 - iconv-lite axios 爬虫乱码 设置responseType: 'arraybuffer', iconv.decode('data', 'charset');  
 - fanyi 终端翻译工具,需要安装依赖 `sudo apt-get install festival festvox-kallpc16k`,用法: fanyi bike
 
+## travis 
+
+> 一个脚本工具吧，方便自动化处理一些过程
+
 ## 发布 beta 版本
 
 在 package.json 里面改版本号
@@ -228,7 +232,6 @@ registry=https://registry.npm.taobao.org
 ## 安装 beta 版本
 
 `npm i packageName@beta`
-
 
 ## 脚本预处理
 

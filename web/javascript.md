@@ -605,4 +605,6 @@ function myNew(fn, ...args) {
 
 ```
 
+## sonar qube 
 
+> 代码质量管理

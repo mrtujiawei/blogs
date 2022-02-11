@@ -608,3 +608,7 @@ function myNew(fn, ...args) {
 ## sonar qube 
 
 > 代码质量管理
+
+## 微前端框架
+
+> `single-spa`

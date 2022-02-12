@@ -612,3 +612,16 @@ function myNew(fn, ...args) {
 ## 微前端框架
 
 > `single-spa`
+
+## 代码调试
+
+1. chrome 导入项目文件  
+
+`Chrome DevTools > Sources > FileSystem > Add folder to workspace`
+
+2. chrome 会自动检测是否和当前网站的代码一致，如果是一致的，修改workspace中的文件会直接看到变化
+
+## 异常堆栈中忽略某个文件中的所有堆栈
+
+右键 `Add script to ignore list`
+

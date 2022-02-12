@@ -239,3 +239,7 @@ registry=https://registry.npm.taobao.org
 
 package.json 自动控制的流程:  
 `pre{cmd}` => `{cmd}` => `post{cmd}`
+
+## ngrok 
+
+> 外网端口映射，本地端口映射为外部网站端口

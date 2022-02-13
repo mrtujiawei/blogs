@@ -198,3 +198,7 @@ Light weight process,轻量级的进程，本质仍是进程(linux)。
 ## TCP/IP ##
 
 面向连接的可靠传输协议
+
+## Completely Fair Scheduler
+
+> 完全公平调度器，用于Linux系统中普通进程的调度。

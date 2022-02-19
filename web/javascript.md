@@ -625,4 +625,14 @@ function myNew(fn, ...args) {
 
 右键 `Add script to ignore list`
 
-## 
+## shadow dom 
+
+> 可以实现样式隔离
+
+```javascript
+const el = document.querySelector('selector');
+const shadow = el.attachShadow({ mode: 'open' });
+
+// innerHTML 中包含style或者link 引入样式
+shadow.innerHTML = `innerHTML`;
+```

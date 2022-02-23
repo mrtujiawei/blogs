@@ -427,3 +427,14 @@ $ tmux [-c {some commands]
 
 常见命令行用法
 [tldr command]
+
+
+## nmap 
+
+- ip扫描
+- 端口扫描
+
+## 目录扫描
+
+- dirsearch
+- fuzz

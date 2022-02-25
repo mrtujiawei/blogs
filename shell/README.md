@@ -438,3 +438,16 @@ $ tmux [-c {some commands]
 
 - dirsearch
 - fuzz
+
+
+## ssh 免密配置
+
+> 在目标主机 ~/.ssh/authorized_keys 中添加 id_rsa.pub 中的秘钥
+> 在自己电脑上 ~/.ssh/config 中添加一些配置
+
+```config
+Host [hostname]
+  HostName [ip]
+  Port [port]
+  User [user]
+```

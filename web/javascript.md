@@ -119,7 +119,7 @@ document --> HTMLDocument.prototype -->Document.prototype
 
 
 ```javascript
-DOMParser  =>  parseFromString 装字符串为dom文档
+DOMParser  =>  parseFromString 转字符串为dom文档
 dom.replaceWidh => 替换元素
 element.compareDocumentPosition(otherElemnt) 比较位置关系
 1. 不在同一个文档内
@@ -283,28 +283,6 @@ data:[Mime-type][;charset=<encoding>[;base64],<data>]
 
 浏览器显示通知API
 Notification.requestPermission
-
-```javascript
-/**
- * 希尔排序
- */
-function shellSort(arr, compareTo = (a, b) => a - b) {
-  let n = arr.length;
-  let h = 1;
-  while(h < n / 3) {
-    h = 3 * h + 1;
-  }
-
-  while(h >= 1) {
-    for(let i = h; i < n; i++) {
-      for(let j = i; j >= h && compareTo(arr[j], arr[j - h]) < 0; j -= h) {
-        [arr[j], arr[j - h]] = [arr[j - h], arr[j]];
-      }
-    }
-    h = parseInt(h / 3);
-  }
-}
-```
 
 webpack --profile --json > stats.json
 

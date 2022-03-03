@@ -1,15 +1,62 @@
 # vue3 源码学习
 
+## component
+
+直接挂载在 createAppContext 中的 context 属性上
+
+## provide inject
+
+> 挂载或更新过程中, createComponentInstance
+
+直接把父组件的 provides 拿过来
+如果当前组件没有 provide，则 provides 是一样的
+如果当前组件 有 provide, 则 Object.create(parent.provides) 
+再把新的属性挂载上去
+
+inject 的过程实际就是查找原型链
+
+```
+createComponentInstance (component.ts:438)
+mountComponent (renderer.ts:1293)
+processComponent (renderer.ts:1263)
+patch (renderer.ts:527)
+render (renderer.ts:2387)
+mount (apiCreateApp.ts:294)
+app.mount (index.ts:96)
+(anonymous) (index.js:45)
+```
+
+## unmount
+
+> 移除节点
+remove(vnode)
+
+> 关闭 score
+scope.close();
+
+> 停止 scheulder
+update.active = false;
+
+## use
+
+放到 installedPlugins，执行 
+
+
+## createApp
+
+1. ensureRenderer 确定渲染器(摇树), 确定dom相关的操作
+2. 返回
+
 ## nextTick
 
-如果没有正在执行的任务: Promise.resolve()
-用 Promise.resove() 的原因是将 nextTick 的回调异步执行
+如果没有正在执行的任务: Promise.resolve()  
+用 Promise.resove() 是为了将 nextTick 的回调异步执行  
 让 nextTick 以外的代码先执行
 
-如果在调用 nextTick 前没有跟页面相关的数据发生变化,
+如果在调用 nextTick 前没有跟页面相关的数据发生变化,  
 此时 nextTick 回调触发时，页面还没发生变化
 
-如果 nextTick 之前有和页面相关的数据发生变化,
+如果 nextTick 之前有和页面相关的数据发生变化,  
 nextTick 回调触发时，页面已经更新完毕
 
 ## effect
@@ -25,6 +72,11 @@ const effect = new ReactiveEffect(
   instance.scope // track it in component's effect scope
 );
 ```
+
+## effect scope
+
+> 还没搞明白干啥的，就要开始学源码了
+
 
 ## 指令
 

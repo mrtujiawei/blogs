@@ -28,9 +28,15 @@ app.mount (index.ts:96)
 
 ## props 
 
+传递props: 通过编译后的render函数中 _createVNode 直接传给对应组件(元素)
+
+接受 props: 创建vnode之后 => setupComponent => initProps 完成接受
+
+> normalize
+
 appContext.propsCache 
 comp 为 key, NormalizedPropsOptions 为 value
-NormalizedPropsOptions = [NormalizedProps, string[]] | [] // normalize
+NormalizedPropsOptions = [NormalizedProps, string[]] | []
 
 ## unmount
 
@@ -52,6 +58,12 @@ update.active = false;
 1. ensureRenderer 确定渲染器(摇树), 确定dom相关的操作
 2. 创建 app 实例，初始化 context (props, provides等)
 2. 返回app实例
+
+## defineComponent
+
+只是加了个类型，
+判断是否是函数，函数的话直接改成对象，函数放到setup属性上
+不是函数直接返回options
 
 ## mount
 

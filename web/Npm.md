@@ -264,3 +264,20 @@ package.json 自动控制的流程:
 
 > 状态机，实现复杂应用可以用到
 > 可以可视化状态及状态转换
+
+## konva
+
+> HTML5 Canvas JavaScript
+
+
+
+
+
+
+
+
+
+
+
+
+

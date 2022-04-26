@@ -269,6 +269,10 @@ package.json 自动控制的流程:
 
 > HTML5 Canvas JavaScript
 
+## pixijs
+
+> webgl 渲染器，貌似已经接近游戏了
+
 
 
 

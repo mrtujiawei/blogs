@@ -614,3 +614,7 @@ const shadow = el.attachShadow({ mode: 'open' });
 // innerHTML 中包含style或者link 引入样式
 shadow.innerHTML = `innerHTML`;
 ```
+
+## lit、carbon
+
+`web component` 函数库

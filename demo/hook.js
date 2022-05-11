@@ -1,26 +1,55 @@
 import ReactDOM from 'react-dom';
 
-let workInProgressHook; //当前工作中的hook
-let isMount = true; //是否时mount时
+/**
+ * 当前工作中的hook
+ */
+let workInProgressHook;
 
+/**
+ * 是否是mount时
+ */
+let isMount = true;
+
+/**
+ * fiber节点
+ */
 const fiber = {
-  //fiber节点
-  memoizedState: null, //hook链表
-  stateNode: App, //dom
+  /**
+   * hook链表
+   */
+  memoizedState: null,
+
+  /**
+   * dom
+   */
+  stateNode: App,
 };
 
 const Dispatcher = (() => {
-  //Dispatcher对象
+  /**
+   * Dispatcher对象
+   * mount时调用
+   */
   function mountWorkInProgressHook() {
-    //mount时调用
+    /**
+     * 构建hook
+     */
     const hook = {
-      //构建hook
       queue: {
-        //更新队列
-        pending: null, //未执行的update队列
+        // 更新队列
+        // 未执行的update队列
+        pending: null,
       },
-      memoizedState: null, //当前state
-      next: null, //下一个hook
+
+      /**
+       * 当前state
+       */
+      memoizedState: null,
+
+      /**
+       * 下一个hook
+       */
+      next: null,
     };
     if (!fiber.memoizedState) {
       fiber.memoizedState = hook; //第一个hook的话直接赋值给fiber.memoizedState
@@ -30,12 +59,20 @@ const Dispatcher = (() => {
     workInProgressHook = hook; //记录当前工作的hook
     return workInProgressHook;
   }
+
+  /**
+   *
+   */
   function updateWorkInProgressHook() {
     //update时调用
     let curHook = workInProgressHook;
     workInProgressHook = workInProgressHook.next; //下一个hook
     return curHook;
   }
+
+  /**
+   *
+   */
   function useState(initialState) {
     let hook;
     if (isMount) {

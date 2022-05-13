@@ -75,7 +75,7 @@
 但是内部并没有使用,所以`lane`根本没用*
 
 `entangleTransitions`
-> 如果`lane`
+> 如果`fiber` `lane`
 
 
 
@@ -97,5 +97,7 @@
 `enqueueInterleavedUpdates`
 > 如果交错队列存在，添加到更新队列的末尾，并清空交错队列
 
-## react-
+## react-scheduler
+
+看别人的描述，其实就是 requestIdleCallback 的 polyfill
 

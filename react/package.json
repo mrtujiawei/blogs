@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "name": "react",
+  "version": "1.0.0",
+  "description": "1比1还原react源码",
+  "scripts": {},
+  "keywords": [
+    "react"
+  ],
+  "author": "mrtujiawei",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.7.2"
+  }
+}

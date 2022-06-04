@@ -16,13 +16,15 @@ type Task = {
 let runIdCounter: number = 0;
 let mainThreadIdCounter: number = 0;
 
-// Bytes per element is 4
+// 每个日志大小为 4 bytes
 const INITIAL_EVENT_LOG_SIZE = 131072;
-const MAX_EVENT_LOG_SIZE = 524288; // Equivalent to 2 megabytes
+
+// 2M
+const MAX_EVENT_LOG_SIZE = 524288;
 
 let eventLogSize = 0;
-let eventLogBuffer = null;
-let eventLog = null;
+let eventLogBuffer: ArrayBuffer = null;
+let eventLog: Int32Array = null;
 let eventLogIndex = 0;
 
 const TaskStartEvent = 1;
@@ -34,7 +36,14 @@ const TaskYieldEvent = 6;
 const SchedulerSuspendEvent = 7;
 const SchedulerResumeEvent = 8;
 
-function logEvent(entries: any[]) {
+type EventType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+/**
+ * 输出事件日志
+ */
+function logEvent(
+  entries: [EventType, number, number, (PriorityLevel | number)?]
+) {
   if (eventLog !== null) {
     const offset = eventLogIndex;
     eventLogIndex += entries.length;
@@ -58,6 +67,9 @@ function logEvent(entries: any[]) {
   }
 }
 
+/**
+ * 开始打日志之前的一些初始化操作
+ */
 export function startLoggingProfilingEvents(): void {
   eventLogSize = INITIAL_EVENT_LOG_SIZE;
   eventLogBuffer = new ArrayBuffer(eventLogSize * 4);
@@ -65,6 +77,10 @@ export function startLoggingProfilingEvents(): void {
   eventLogIndex = 0;
 }
 
+/**
+ * 结束打印
+ * 重置变量，返回之前打印的所有日志
+ */
 export function stopLoggingProfilingEvents(): ArrayBuffer | null {
   const buffer = eventLogBuffer;
   eventLogSize = 0;
@@ -74,73 +90,76 @@ export function stopLoggingProfilingEvents(): ArrayBuffer | null {
   return buffer;
 }
 
+/**
+ * 标记任务开始
+ */
 export function markTaskStart(task: Task, ms: number) {
   if (enableProfiling) {
-    if (eventLog !== null) {
-      // performance.now returns a float, representing milliseconds. When the
-      // event is logged, it's coerced to an int. Convert to microseconds to
-      // maintain extra degrees of precision.
-      logEvent([TaskStartEvent, ms * 1000, task.id, task.priorityLevel]);
-    }
+    logEvent([TaskStartEvent, ms * 1000, task.id, task.priorityLevel]);
   }
 }
 
+/**
+ * 标记任务结束
+ */
 export function markTaskCompleted(task: Task, ms: number) {
   if (enableProfiling) {
-    if (eventLog !== null) {
-      logEvent([TaskCompleteEvent, ms * 1000, task.id]);
-    }
+    logEvent([TaskCompleteEvent, ms * 1000, task.id]);
   }
 }
 
+/**
+ * 标记任务取消
+ */
 export function markTaskCanceled(task: Task, ms: number) {
   if (enableProfiling) {
-    if (eventLog !== null) {
-      logEvent([TaskCancelEvent, ms * 1000, task.id]);
-    }
+    logEvent([TaskCancelEvent, ms * 1000, task.id]);
   }
 }
 
+/**
+ * 标记任务错误
+ */
 export function markTaskErrored(task: Task, ms: number) {
   if (enableProfiling) {
-    if (eventLog !== null) {
-      logEvent([TaskErrorEvent, ms * 1000, task.id]);
-    }
+    logEvent([TaskErrorEvent, ms * 1000, task.id]);
   }
 }
 
+/**
+ * 标记任务运行
+ */
 export function markTaskRun(task: Task, ms: number) {
   if (enableProfiling) {
     runIdCounter++;
-
-    if (eventLog !== null) {
-      logEvent([TaskRunEvent, ms * 1000, task.id, runIdCounter]);
-    }
+    logEvent([TaskRunEvent, ms * 1000, task.id, runIdCounter]);
   }
 }
 
+/**
+ * 标记任务暂停
+ */
 export function markTaskYield(task: Task, ms: number) {
   if (enableProfiling) {
-    if (eventLog !== null) {
-      logEvent([TaskYieldEvent, ms * 1000, task.id, runIdCounter]);
-    }
+    logEvent([TaskYieldEvent, ms * 1000, task.id, runIdCounter]);
   }
 }
 
+/**
+ * 标记任务未定暂缓
+ */
 export function markSchedulerSuspended(ms: number) {
   if (enableProfiling) {
     mainThreadIdCounter++;
-
-    if (eventLog !== null) {
-      logEvent([SchedulerSuspendEvent, ms * 1000, mainThreadIdCounter]);
-    }
+    logEvent([SchedulerSuspendEvent, ms * 1000, mainThreadIdCounter]);
   }
 }
 
+/**
+ * 标记任务启动
+ */
 export function markSchedulerUnsuspended(ms: number) {
   if (enableProfiling) {
-    if (eventLog !== null) {
-      logEvent([SchedulerResumeEvent, ms * 1000, mainThreadIdCounter]);
-    }
+    logEvent([SchedulerResumeEvent, ms * 1000, mainThreadIdCounter]);
   }
 }

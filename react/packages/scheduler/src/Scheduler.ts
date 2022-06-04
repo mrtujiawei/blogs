@@ -15,6 +15,7 @@ import {
   maxYieldMs,
 } from './SchedulerFeatureFlags';
 
+import type { Node } from './SchedulerMinHeap';
 import { push, pop, peek } from './SchedulerMinHeap';
 
 import {
@@ -39,6 +40,7 @@ import {
 } from './SchedulerProfiling';
 
 let getCurrentTime: () => number;
+
 const hasPerformanceNow =
   typeof performance === 'object' && typeof performance.now === 'function';
 
@@ -51,56 +53,61 @@ if (hasPerformanceNow) {
   getCurrentTime = () => localDate.now() - initialTime;
 }
 
-// Max 31 bit integer. The max integer size in V8 for 32-bit systems.
-// Math.pow(2, 30) - 1
-// 0b111111111111111111111111111111
-let maxSigned31BitInt = 1073741823;
+// setTimeout 最大延时时间，目前大部分应该是 (1 << 31) - 1
+// 这里兼容了32位的版本, 范围小1位 (1 << 30) - 1
+const maxSigned31BitInt = 1073741823;
 
-// Times out immediately
-var IMMEDIATE_PRIORITY_TIMEOUT = -1;
-// Eventually times out
-var USER_BLOCKING_PRIORITY_TIMEOUT = 250;
-var NORMAL_PRIORITY_TIMEOUT = 5000;
-var LOW_PRIORITY_TIMEOUT = 10000;
-// Never times out
-var IDLE_PRIORITY_TIMEOUT = maxSigned31BitInt;
+// 立即超时
+const IMMEDIATE_PRIORITY_TIMEOUT = -1;
 
-// Tasks are stored on a min heap
-var taskQueue = [];
-var timerQueue = [];
+// 最终超时时间
+const USER_BLOCKING_PRIORITY_TIMEOUT = 250;
+const NORMAL_PRIORITY_TIMEOUT = 5000;
+const LOW_PRIORITY_TIMEOUT = 10000;
 
-// Incrementing id counter. Used to maintain insertion order.
-var taskIdCounter = 1;
+// 永远不会超时
+const IDLE_PRIORITY_TIMEOUT = maxSigned31BitInt;
 
-// Pausing the scheduler is useful for debugging.
-var isSchedulerPaused = false;
+// 任务队列存储在小顶堆中
+const taskQueue = [];
+const timerQueue = [];
 
-var currentTask = null;
-var currentPriorityLevel = NormalPriority;
+// 递增任务ID,用来维护插入顺序
+let taskIdCounter = 1;
 
-// This is set while performing work, to prevent re-entrance.
-var isPerformingWork = false;
+// 暂定调度程序，为了调试
+let isSchedulerPaused = false;
 
-var isHostCallbackScheduled = false;
-var isHostTimeoutScheduled = false;
+let currentTask = null;
+let currentPriorityLevel = NormalPriority;
 
-// Capture local references to native APIs, in case a polyfill overrides them.
+// 执行任务前设置，防止重入
+let isPerformingWork = false;
+
+let isHostCallbackScheduled = false;
+let isHostTimeoutScheduled = false;
+
+// 引用原生的API,防止被polyfill覆盖
 const localSetTimeout = typeof setTimeout === 'function' ? setTimeout : null;
 const localClearTimeout =
   typeof clearTimeout === 'function' ? clearTimeout : null;
 const localSetImmediate =
   typeof setImmediate !== 'undefined' ? setImmediate : null; // IE and Node.js + jsdom
 
+// 貌似只是测试的时候用到了
 const isInputPending =
   typeof navigator !== 'undefined' &&
+  // @ts-ignore
   navigator.scheduling !== undefined &&
+  // @ts-ignore
   navigator.scheduling.isInputPending !== undefined
+  // @ts-ignore
     ? navigator.scheduling.isInputPending.bind(navigator.scheduling)
     : null;
 
 const continuousOptions = { includeContinuous: enableIsInputPendingContinuous };
 
-function advanceTimers(currentTime) {
+function advanceTimers(currentTime: number) {
   // Check for tasks that are no longer delayed and add them to the queue.
   let timer = peek(timerQueue);
   while (timer !== null) {
@@ -124,7 +131,7 @@ function advanceTimers(currentTime) {
   }
 }
 
-function handleTimeout(currentTime) {
+function handleTimeout(currentTime: number) {
   isHostTimeoutScheduled = false;
   advanceTimers(currentTime);
 
@@ -141,7 +148,7 @@ function handleTimeout(currentTime) {
   }
 }
 
-function flushWork(hasTimeRemaining, initialTime) {
+function flushWork(hasTimeRemaining: boolean, initialTime: number) {
   if (enableProfiling) {
     markSchedulerUnsuspended(initialTime);
   }
@@ -183,7 +190,7 @@ function flushWork(hasTimeRemaining, initialTime) {
   }
 }
 
-function workLoop(hasTimeRemaining, initialTime) {
+function workLoop(hasTimeRemaining: boolean, initialTime: number) {
   let currentTime = initialTime;
   advanceTimers(currentTime);
   currentTask = peek(taskQueue);
@@ -240,7 +247,7 @@ function workLoop(hasTimeRemaining, initialTime) {
   }
 }
 
-function unstable_runWithPriority(priorityLevel, eventHandler) {
+function unstable_runWithPriority(priorityLevel: number, eventHandler: Function) {
   switch (priorityLevel) {
     case ImmediatePriority:
     case UserBlockingPriority:
@@ -252,7 +259,7 @@ function unstable_runWithPriority(priorityLevel, eventHandler) {
       priorityLevel = NormalPriority;
   }
 
-  var previousPriorityLevel = currentPriorityLevel;
+  const previousPriorityLevel = currentPriorityLevel;
   currentPriorityLevel = priorityLevel;
 
   try {
@@ -262,8 +269,8 @@ function unstable_runWithPriority(priorityLevel, eventHandler) {
   }
 }
 
-function unstable_next(eventHandler) {
-  var priorityLevel;
+function unstable_next(eventHandler: Function) {
+  let priorityLevel: number;
   switch (currentPriorityLevel) {
     case ImmediatePriority:
     case UserBlockingPriority:
@@ -287,7 +294,7 @@ function unstable_next(eventHandler) {
   }
 }
 
-function unstable_wrapCallback(callback) {
+function unstable_wrapCallback(callback: Function) {
   var parentPriorityLevel = currentPriorityLevel;
   return function () {
     // This is a fork of runWithPriority, inlined for performance.
@@ -302,10 +309,10 @@ function unstable_wrapCallback(callback) {
   };
 }
 
-function unstable_scheduleCallback(priorityLevel, callback, options) {
-  var currentTime = getCurrentTime();
+function unstable_scheduleCallback(priorityLevel: number, callback: Function, options: any) {
+  const currentTime = getCurrentTime();
 
-  var startTime;
+  let startTime: number;
   if (typeof options === 'object' && options !== null) {
     var delay = options.delay;
     if (typeof delay === 'number' && delay > 0) {
@@ -317,7 +324,7 @@ function unstable_scheduleCallback(priorityLevel, callback, options) {
     startTime = currentTime;
   }
 
-  var timeout;
+  let timeout: number;
   switch (priorityLevel) {
     case ImmediatePriority:
       timeout = IMMEDIATE_PRIORITY_TIMEOUT;
@@ -337,9 +344,9 @@ function unstable_scheduleCallback(priorityLevel, callback, options) {
       break;
   }
 
-  var expirationTime = startTime + timeout;
+  let expirationTime = startTime + timeout;
 
-  var newTask = {
+  let newTask: Node = {
     id: taskIdCounter++,
     callback,
     priorityLevel,
@@ -421,7 +428,7 @@ function unstable_getCurrentPriorityLevel() {
 
 let isMessageLoopRunning = false;
 let scheduledHostCallback = null;
-let taskTimeoutID = -1;
+let taskTimeoutID: any = -1;
 
 // Scheduler periodically yields in case there is other work on the main
 // thread, like user events. By default, it yields multiple times per frame.
@@ -483,7 +490,9 @@ function requestPaint() {
   if (
     enableIsInputPending &&
     navigator !== undefined &&
+    // @ts-ignore
     navigator.scheduling !== undefined &&
+    // @ts-ignore
     navigator.scheduling.isInputPending !== undefined
   ) {
     needsPaint = true;
@@ -544,7 +553,7 @@ const performWorkUntilDeadline = () => {
   needsPaint = false;
 };
 
-let schedulePerformWorkUntilDeadline;
+let schedulePerformWorkUntilDeadline: any;
 if (typeof localSetImmediate === 'function') {
   // Node.js and old IE.
   // There's a few reasons for why we prefer setImmediate.
@@ -576,7 +585,7 @@ if (typeof localSetImmediate === 'function') {
   };
 }
 
-function requestHostCallback(callback) {
+function requestHostCallback(callback: Function) {
   scheduledHostCallback = callback;
   if (!isMessageLoopRunning) {
     isMessageLoopRunning = true;

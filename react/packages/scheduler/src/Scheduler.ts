@@ -92,6 +92,7 @@ const localSetTimeout = typeof setTimeout === 'function' ? setTimeout : null;
 const localClearTimeout =
   typeof clearTimeout === 'function' ? clearTimeout : null;
 const localSetImmediate =
+  // @ts-ignore
   typeof setImmediate !== 'undefined' ? setImmediate : null; // IE and Node.js + jsdom
 
 // 貌似只是测试的时候用到了
@@ -407,7 +408,7 @@ function unstable_getFirstCallbackNode() {
   return peek(taskQueue);
 }
 
-function unstable_cancelCallback(task) {
+function unstable_cancelCallback(task: Node) {
   if (enableProfiling) {
     if (task.isQueued) {
       const currentTime = getCurrentTime();

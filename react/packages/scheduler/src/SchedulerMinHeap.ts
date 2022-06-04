@@ -7,9 +7,14 @@
 
 type Heap = Array<Node>;
 
-type Node = {
+export type Node = {
   id: number;
   sortIndex: number;
+  callback: Function;
+  priorityLevel: number;
+  startTime: number;
+  expirationTime: number;
+  isQueued?: boolean;
 };
 
 export function push(heap: Heap, node: Node): void {

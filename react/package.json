@@ -13,6 +13,7 @@
   "author": "mrtujiawei",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^17.0.38",
     "typescript": "^4.7.2"
   }
 }

@@ -5,13 +5,10 @@
  * @date: 2022-06-03 21:02:28
  */
 import type { PriorityLevel } from './SchedulerPriorities';
+import type { Node } from './SchedulerMinHeap';
 import { enableProfiling } from './SchedulerFeatureFlags';
 
-type Task = {
-  id: number;
-  priorityLevel: PriorityLevel;
-  [key: string]: any;
-};
+type Task = Node;
 
 let runIdCounter: number = 0;
 let mainThreadIdCounter: number = 0;

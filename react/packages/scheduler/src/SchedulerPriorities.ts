@@ -5,7 +5,6 @@
  * @date: 2022-06-03 21:00:44
  */
 
-// TODO: Use symbols?
 export const NoPriority = 0;
 export const ImmediatePriority = 1;
 export const UserBlockingPriority = 2;

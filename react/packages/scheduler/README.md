@@ -2,6 +2,21 @@
 
 主要是对外暴露了一些优先级尚需经、调度任务的函数、获取调度信息的函数
 
+## 调用顺序
+
+1. unstable_scheduleCallback
+2. [requestHostTimeout]
+3. requestHostCallback
+4. schedulePerformWorkUntilDeadline
+5. performWorkUntilDeadline
+6. scheduledHostCallback (flushWork) 有任务没执行完 -> [schedulePerformWorkUntilDeadline]
+7. workLoop
+8. advanceTimers
+9. shouldYieldToHost
+10. task.callback
+11. callback
+12. requestHostTimeout
+
 ## 变量定义
 
 - timerQueue

@@ -79,7 +79,7 @@ let taskIdCounter = 1;
 // 是否需要暂停，外部调用
 let isSchedulerPaused = false;
 
-let currentTask = null;
+let currentTask: Node = null;
 let currentPriorityLevel = NormalPriority;
 
 // 执行任务前设置，防止重入
@@ -254,10 +254,12 @@ function workLoop(hasTimeRemaining: boolean, initialTime: number) {
     if (typeof callback === 'function') {
       currentTask.callback = null;
       currentPriorityLevel = currentTask.priorityLevel;
+      // 必定是true的东西，真的有点搞不懂啊
       const didUserCallbackTimeout = currentTask.expirationTime <= currentTime;
       if (enableProfiling) {
         markTaskRun(currentTask, currentTime);
       }
+
       // TODO 看不懂，这里执行回调是干什么
       const continuationCallback = callback(didUserCallbackTimeout);
       currentTime = getCurrentTime();
@@ -426,6 +428,7 @@ function unstable_scheduleCallback(priorityLevel: number, callback: Function, op
     expirationTime,
     sortIndex: -1,
   };
+
   if (enableProfiling) {
     newTask.isQueued = false;
   }
@@ -523,8 +526,10 @@ let isMessageLoopRunning = false;
 
 /**
  * 系统回调
+ * 调用 requestHostCallback(flushWork) 后
+ * 更改为flushWork
  */
-let scheduledHostCallback = null;
+let scheduledHostCallback: typeof flushWork = null;
 
 /**
  * 任务timeout ID
@@ -690,7 +695,7 @@ if (typeof localSetImmediate === 'function') {
  * 请求执行回调
  * 如果消息循环未开启，开启消息循环
  */
-function requestHostCallback(callback: Function) {
+function requestHostCallback(callback: typeof flushWork) {
   scheduledHostCallback = callback;
   if (!isMessageLoopRunning) {
     // 如果消息循环未开始，开始消息循环 并执行任务
@@ -701,8 +706,10 @@ function requestHostCallback(callback: Function) {
 
 /**
  * 设置延时任务
+ * 同一时间只会有一个 任务 延时
+ * @param callback 只会处理handleTimeout
  */
-function requestHostTimeout(callback: (time: number) => void, ms: number) {
+function requestHostTimeout(callback: typeof handleTimeout, ms: number) {
   taskTimeoutID = localSetTimeout(() => {
     callback(getCurrentTime());
   }, ms);

@@ -86,12 +86,12 @@ let currentPriorityLevel = NormalPriority;
 let isPerformingWork = false;
 
 /**
- * 是否是系统回调任务
+ * 是否已经触发callback调度
  */
 let isHostCallbackScheduled = false;
 
 /**
- * 是不是系统超时任务
+ * 是否已经触发timeout调度
  */
 let isHostTimeoutScheduled = false;
 
@@ -114,6 +114,9 @@ const isInputPending =
     ? navigator.scheduling.isInputPending.bind(navigator.scheduling)
     : null;
 
+/**
+ * 貌似又是个只在测试中出现的东西
+ */
 const continuousOptions = { includeContinuous: enableIsInputPendingContinuous };
 
 /**
@@ -144,19 +147,24 @@ function advanceTimers(currentTime: number) {
   }
 }
 
-// TODO
 /**
  * 处理超时
+ * 每次只会有一个handleTimeout
+ * 每次 `flushWork` 的时候，会取消 hostTimeout
+ * `workLoop` 执行完后，如果没有可以执行的task， 会再次添加 hostTimeout
  */
 function handleTimeout(currentTime: number) {
   isHostTimeoutScheduled = false;
   advanceTimers(currentTime);
 
   if (!isHostCallbackScheduled) {
+    // 如果 callback 调度还没开始
     if (peek(taskQueue) !== null) {
+      // 可以触发 callback 调度
       isHostCallbackScheduled = true;
       requestHostCallback(flushWork);
     } else {
+      // 触发 timeout 调度
       const firstTimer = peek(timerQueue);
       if (firstTimer !== null) {
         requestHostTimeout(handleTimeout, firstTimer.startTime - currentTime);
@@ -165,16 +173,17 @@ function handleTimeout(currentTime: number) {
   }
 }
 
-// TODO
 /**
  * 执行work
+ * 关闭所有schedule, 开始performingWork
+ * 触发workLoop
  */
 function flushWork(hasTimeRemaining: boolean, initialTime: number) {
   if (enableProfiling) {
     markSchedulerUnsuspended(initialTime);
   }
 
-  // 开启回调任务
+  // 关闭回调调度
   isHostCallbackScheduled = false;
   if (isHostTimeoutScheduled) {
     // 任务的超时回调不需要了
@@ -197,7 +206,7 @@ function flushWork(hasTimeRemaining: boolean, initialTime: number) {
         throw error;
       }
     } else {
-      // No catch in prod code path.
+      // 生产环境不用catch, 直接让错误打印显示
       return workLoop(hasTimeRemaining, initialTime);
     }
   } finally {
@@ -213,6 +222,8 @@ function flushWork(hasTimeRemaining: boolean, initialTime: number) {
 
 /**
  * 工作循环
+ * 把 task 一个个拿出来执行
+ * 直到task 或 时间用尽 、外部暂停
  * @param hasTimeRemaining 是否还有时间剩余
  * @param initialTime 初始时间
  */
@@ -221,8 +232,9 @@ function workLoop(hasTimeRemaining: boolean, initialTime: number) {
   advanceTimers(currentTime);
   currentTask = peek(taskQueue);
 
-  // 当前有可以执行的任务
-  // 并且 enableSchedulerDebugging 为 false 或 isSchedulerPaused 为false
+  // 1. 当前有可以执行的任务
+  // 2. 并且没有开始schuleduler debug 和 暂定schedule
+  // 其中第二点主要是测试的时候会用到
   while (
     currentTask !== null &&
     !(enableSchedulerDebugging && isSchedulerPaused)
@@ -286,7 +298,11 @@ function workLoop(hasTimeRemaining: boolean, initialTime: number) {
   }
 }
 
+/**
+ * 运行eventHandler, 运行前修改优先级, 运行结束后恢复优先级
+ */
 function unstable_runWithPriority(priorityLevel: number, eventHandler: Function) {
+  // 没有优先级，优先级设置为普通优先级
   switch (priorityLevel) {
     case ImmediatePriority:
     case UserBlockingPriority:
@@ -340,7 +356,7 @@ function unstable_next(eventHandler: Function) {
 /**
  * wrap 的时候记录当前的优先级
  * 执行的时候记录执行时候的优先级
- * 有wrap的优先级去执行当前的回调
+ * 用wrap的优先级去执行当前的回调
  * 执行完成后切换回执行前记录的优先级
  */
 function unstable_wrapCallback(callback: Function) {
@@ -359,9 +375,12 @@ function unstable_wrapCallback(callback: Function) {
 }
 
 /**
- *
+ * 对外暴露的接口
+ * 计算开始执行的时间
+ * 插入任务队列中,尝试进行调度
+ * @param options 只有 delay 有效，用来延时
  */
-function unstable_scheduleCallback(priorityLevel: number, callback: Function, options: any) {
+function unstable_scheduleCallback(priorityLevel: number, callback: Function, options?: { delay: number }) {
   const currentTime = getCurrentTime();
 
   let startTime: number;
@@ -396,6 +415,7 @@ function unstable_scheduleCallback(priorityLevel: number, callback: Function, op
       break;
   }
 
+  // 过期时间
   let expirationTime = startTime + timeout;
 
   let newTask: Node = {
@@ -410,19 +430,20 @@ function unstable_scheduleCallback(priorityLevel: number, callback: Function, op
     newTask.isQueued = false;
   }
 
+  // 延迟执行的任务
   if (startTime > currentTime) {
-    // This is a delayed task.
+    // 首先放入timeQueue
     newTask.sortIndex = startTime;
     push(timerQueue, newTask);
     if (peek(taskQueue) === null && newTask === peek(timerQueue)) {
-      // All tasks are delayed, and this is the task with the earliest delay.
+      // 所有任务都是延迟任务，并且最早插入的任务时最快超时的任务
       if (isHostTimeoutScheduled) {
-        // Cancel an existing timeout.
+        // 如果已经设置了超时回调，取消
         cancelHostTimeout();
       } else {
         isHostTimeoutScheduled = true;
       }
-      // Schedule a timeout.
+      // 调度超时任务
       requestHostTimeout(handleTimeout, startTime - currentTime);
     }
   } else {
@@ -432,8 +453,8 @@ function unstable_scheduleCallback(priorityLevel: number, callback: Function, op
       markTaskStart(newTask, currentTime);
       newTask.isQueued = true;
     }
-    // Schedule a host callback, if needed. If we're already performing work,
-    // wait until the next time we yield.
+    // 如果需要，触发系统回调
+    // 如果已经在执行task，则下一次yield的时候再执行
     if (!isHostCallbackScheduled && !isPerformingWork) {
       isHostCallbackScheduled = true;
       requestHostCallback(flushWork);
@@ -523,7 +544,11 @@ let startTime = -1;
 
 let needsPaint = false;
 
-function shouldYieldToHost() {
+/**
+ * 是否需要让出执行权
+ * 主要就是判断执行时间有没有超出预设的时间
+ */
+function shouldYieldToHost(): boolean {
   /**
    * 已经消耗的时间
    */
@@ -591,7 +616,7 @@ function forceFrameRate(fps: number) {
   if (fps > 0) {
     frameInterval = Math.floor(1000 / fps);
   } else {
-    // reset the framerate
+    // 重置fps
     frameInterval = frameYieldMs;
   }
 }
@@ -636,7 +661,7 @@ const performWorkUntilDeadline = () => {
 };
 
 /**
- * 执行任务知道将空闲时间用完
+ * 执行任务直到将空闲时间用完
  */
 let schedulePerformWorkUntilDeadline: () => void;
 
@@ -663,6 +688,7 @@ if (typeof localSetImmediate === 'function') {
 
 /**
  * 请求执行回调
+ * 如果消息循环未开启，开启消息循环
  */
 function requestHostCallback(callback: Function) {
   scheduledHostCallback = callback;

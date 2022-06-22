@@ -283,6 +283,30 @@ package.json 自动控制的流程:
 
 > 虚拟列表, 无限滚动啥的
 
+## 打包下载 zip
+
+```javascript
+// 下载
+import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
+
+async function downloadM3u8(name, uri) {
+  const zip = new JSZip();
+  const folder = zip.folder(name);
+
+  folder.file(path, content);
+  folder.file(path, content);
+  folder.file(path, content);
+
+  return new Promise((resolve) => {
+    zip.generateAsync({type:"blob"}).then(function(content) {
+      saveAs(content, name);
+      resolve();
+    });
+  });
+}
+
+```
 
 
 

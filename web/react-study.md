@@ -344,3 +344,14 @@ const ReactElement = function(type, key, ref, self, source, owner, props) {
   return element;
 };
 ```
+
+### useState
+
+```
+
+// 开始调度任务
+scheduleUpdateOnFiber(fiber, lane, eventTime);
+
+// 开始执行调度任务
+ensureRootIsScheduled
+```

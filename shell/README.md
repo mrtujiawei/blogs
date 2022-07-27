@@ -451,3 +451,12 @@ Host [hostname]
   Port [port]
   User [user]
 ```
+
+## 生成ssl整数
+
+```shell
+openssl genrsa -out private_key.pem 1024
+openssl req -new -out ca-req.csr -key private_key.pem
+openssl x509 -req -in ca-req.csr -out ca-cert.pem -signkey private_key.pem -days 36500
+```
+

@@ -452,7 +452,7 @@ Host [hostname]
   User [user]
 ```
 
-## 生成ssl整数
+## 生成ssl证书
 
 ```shell
 openssl genrsa -out private_key.pem 1024

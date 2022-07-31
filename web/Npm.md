@@ -308,6 +308,13 @@ async function downloadM3u8(name, uri) {
 
 ```
 
+## scrollreveal & wow
+
+scrollreveal 每次都会播放
+
+wow 首次播放
+
+滚动到元素显示后播放动画
 
 
 

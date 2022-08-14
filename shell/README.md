@@ -459,7 +459,3 @@ openssl genrsa -out private_key.pem 1024
 openssl req -new -out ca-req.csr -key private_key.pem
 openssl x509 -req -in ca-req.csr -out ca-cert.pem -signkey private_key.pem -days 36500
 ```
-
-## figlet
-
-ascii 字体 显示

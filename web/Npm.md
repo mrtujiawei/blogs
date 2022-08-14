@@ -322,9 +322,16 @@ ascii 字体 显示
 
 ## commander
 
-> 命令
+> 命令,写代码更加清晰
 
+## @octokit/rest
 
+> github rest api
 
+## configstore
 
+> 配置存储
 
+## inquirer
+
+> 命令行提示,输入输出

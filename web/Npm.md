@@ -32,6 +32,7 @@ export function loadable(component) {
 
 7. `node-sass`安装报错
 
+
 ```javascript
 //.npmrc
 sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
@@ -71,6 +72,8 @@ registry=https://registry.npm.taobao.org
 - CSS-Inspiration(https://chokcoco.github.io/CSS-Inspiration/#/)
 
 - animejs 轻量级的js动画库
+
+- GSAP js动画库
 
 15. spy-debugger
 
@@ -339,3 +342,13 @@ ascii 字体 显示
 ## markdown 编辑器
 
 > https://milkdown.dev/zh-hans/why-milkdown
+
+## glob
+
+> 路径模式匹配
+
+## 安装时默认锁定版本
+
+```shell
+npm config set save-exact true
+```

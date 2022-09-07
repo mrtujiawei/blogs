@@ -393,6 +393,7 @@ $ tmux [-c {some commands]
 > 显示窗口列表: `<C-b>w`
 > 断开连接: `<C-b>d`
 > 返回到上一个 session: `<C-b>l`
+> 滚动: `<C-b>[`
 
 > 显示所有会话
 > `tmux list-sessions`

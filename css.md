@@ -769,3 +769,18 @@ transform-style:preserve-3d;
 
 ios 中, 如果父级设置了 `-webkit-overflow-scrolling: touch;`, `z-index` 可能会出现问题
 `-webkit-overflow-scrolling: unset;` 
+
+## css functions 
+
+渐变的颜色围绕中心点旋转
+
+`conic-gradient`
+
+```
+.classname {
+  background-image: conic-gradient(
+    #ff0052 20deg,
+    transparent 120deg
+  );
+}
+```

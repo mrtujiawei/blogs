@@ -1,5 +1,5 @@
 const amqp = require('amqplib');
-const { Logger, sleep, } = require('@mrtujiawei/utils');
+const { Logger, } = require('@mrtujiawei/utils');
 
 const queue = 'queue';
 const queue2 = 'queue2';

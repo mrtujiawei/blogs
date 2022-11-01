@@ -14,14 +14,6 @@
 
 32. webpack ts-loader option transpileOnly 加快编译速度
 
-33. tsconfig.json extends 可以继承已有的配置 
-
-34. references {path: 'path'} 可以选择其他需要编译的文件
-
-35. compilerOptions: { "outFile": 'path', type: ["node"]}
-
-36. rootDirs 虚拟的把多个目录放在同一个目录下，可以直接./引入
-
 37. webpack 打包 优化 拆包  {optimization: splitChunk: {chunks: 'all'}} 把node_modeles 下面的文件抽取出来打包成vendor文件
 
 38. MiniCssExtractPlugin 提取css文件为单独的文件 loader 为MiniCssExtractPlugin.loader
@@ -33,30 +25,6 @@
 41. eslint 插件配置 airbnb  --> eslint-config-airbnb-base eslint-plugin-import 
 
 42. eslintConfig{extends: "airbnb-base"}
-
-43. js兼容性处理 babel-loader options: {presets: ['@babel/preset-env'], exclude: /node_modules/}  (babel-core babel-loader @babel/preset-env, @babel-polyfill)
-
-44. import '@babel-polyfill' 就能使用，但是全部引入了，很多东西用不到
-
-45. @babel-polyfill 按需加载 corejs (npm i core-js -D)  不需要引入 import '@babel/polyfill';
-    babel-loader options: {
-        presets: [
-            ['@babel/preset-env'],
-            {
-                // 使用了才打包进去
-                useBuiltIns: 'usage',
-                // 指定corejs版本
-                corejs: {
-                    version: 3'
-                },
-                target: {
-                    // 做到60版本
-                    chrome: '60'
-                }
-            }
-        ], 
-        exclude: /node_modules/
-    }
 
 46. HtmlWebpackPlugin({
         template: 'filepath',
@@ -104,30 +72,6 @@ optimization: {
     }
 }
 ```
-63. dll 
-```javascript
-// webpack.dll.js
-entry: {
-    jquery: ['jquery']
-},
-output: {
-    // 向外暴露出去的名字
-    library: '[name].[hash]' 
-},
-plugins: [
-    // 打包生成一个manifest.json文件
-    new webpack.DllPlugin({name: [name].[hash], path: 'dll/manifest.json'})
-]
-
-// webpack.config.js
-// 使用时需要
-plugins: [
-    new webpack.dllReferencePlugin({
-        // 不参与打包的名字和需要改名称的库
-        manifest: resolve(__dirname, 'dll/manifest.json')
-    })
-]
-```
 
 64. add-asset-html-webpack-plugin  将某个文件打包输出出去，并在html中自动引入该文件
 
@@ -138,30 +82,9 @@ new AddAssetHtmlWebpackPlugin({
 })
 ```
 
-65. 解析模块的规则
-
-```javascript
-{
-    resolve: {
-        alias: {
-            '@': resolve(__dirname, 'src')
-        }, 
-        extensions: ['.js', '.json', '.css'],
-        // 去哪个目录找
-        modules: ['node_modules']
-    }
-}
-```
-
 66. 不要全屏报错 overlay: false
 
-67. TerserWebpackPlugin 代码压缩插件 uglify 已经不再维护 (minimizer 里面加 [new TerserWebpackPlugin])
-
 68. React: 尽量使用无状态组件，这样渲染效率比较高，因为不需要触发生命周期函数
-
-69. React: 组件也是数据
-
-70. react-transition-group 动画插件
 
 71. 表格
 

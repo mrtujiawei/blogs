@@ -1,10 +1,5 @@
 # CSS #
 
-纯css效果: https://lhammer.cn/You-need-to-know-css/#/zh-cn/
-
-> 可以用来实现各种奇怪的形状，但主体还是接近圆形的吧  
-border-radius效果: https://9elements.github.io/fancy-border-radius/
-
 ## 视口相关 ##
 
 * 布局视口: `documnet.documentElement.clientWidth`
@@ -22,29 +17,6 @@ border-radius效果: https://9elements.github.io/fancy-border-radius/
 * { 
   touch-action: pan-y; 
 }
-```
-
-```javascript
-// 动态设置
-let style = document.createElement('style');
-style.innerHTML = `html{font-size: ${document.documentElement.clientWidth / 10}px !important;}`;
-
-document.head.appendChild(style);
-
-// 阻止默认事件,如滚动
-elem.addEventListener('touchstart', fn, { passive: false });
-```
-
-2. viewport适配
-
-```javascript
-// 将所有视口的宽度调整为设计图宽度
-// 需要在页面上写好 <meta name="viewport" content="width=device-width">
-// 是为了获取理想视口的宽度， 如果不写这句话，布局适口默认为980
-let targetWidth = 750;
-let meta = document.querySelector('meta[name=viewport]');
-let scale = document.documentElement.clientWidth / targetWidth;
-meta.content = `initial-scale=${scale},maximum-scale=${scale},minimum-scale=${scale},user-scalable=no`;
 ```
 
 3. amfe-flexible 

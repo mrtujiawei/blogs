@@ -2,38 +2,19 @@
 
 19. React.memo(functionComponent) 缓存函数组件(组件只和传入的参数有关)
 
-20. useCallback useReducer useContext
-
-23. let [state, dispatch] = useReducer(reducer: function, initialValue);
-
 24. vue keep-alive 中的include exclude 中的name是组件上的name属性，不是router上的name属性
 
 29. addEventListener(eventName, obj.method) 中method的this指向obj
 
 30. Vue事件修饰符会将除第一个参数以外的参数丢失
 
-32. webpack ts-loader option transpileOnly 加快编译速度
-
 37. webpack 打包 优化 拆包  {optimization: splitChunk: {chunks: 'all'}} 把node_modeles 下面的文件抽取出来打包成vendor文件
 
-38. MiniCssExtractPlugin 提取css文件为单独的文件 loader 为MiniCssExtractPlugin.loader
-
 39. postcss-loader  postcss-preset-env 需要在package.json里面配置browserList 
-
-40. 压缩css插件 optimize-css-assets-webpack-plugin
 
 41. eslint 插件配置 airbnb  --> eslint-config-airbnb-base eslint-plugin-import 
 
 42. eslintConfig{extends: "airbnb-base"}
-
-46. HtmlWebpackPlugin({
-        template: 'filepath',
-        // 移除空格和注释
-        minify: {
-            removeComments: true,
-            collapseWhiteSpace: true
-        }
-    })
 
 47. enforce: 'pre' 优先执行这个loader 'post' 延后执行 不写中间执行
 
@@ -41,27 +22,15 @@
 
 49. HMR 不能监视html文件，需要在entry中用输入加上html文件路径
 
-50. devtool: 'source-map' webpack的第六个模块？
-
-51. [inline-|hidden-|eval-][nosouces-][cheap-[module-]]source-map
-
 52. module: {rules: {oneOf: [(这里的loader只会执行一个)]}}
-
-53. cashDirectory: true 开启babel缓存
 
 54. [chunkhash:8] 代替 [hash:8] 让失效的资源少一点
 
 55. [contenthash:8] 更好， 单独管理 和内容有关，内容不变 就不会打包
 
-56.  tree shaking [es6 production]
-
 57. sideEffects: false (package.json) 可能会把css文件干掉
 
 58. sideEffects: ["*.css", "*.less"] 去掉某些文件
-
-59. thread-loader 一般给babel-loader用 use: ['thread-loader', {loader: '...'}] 开进程可能需要很长时间
-
-60. externals 不会被打包进bundles.js
 
 62. 
 ```javascript

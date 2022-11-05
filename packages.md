@@ -2,6 +2,32 @@
 
 曾经使用过的 npm 包
 
+- 下载相关
+
+  - `jszip`: 生成压缩包
+  - `file-saver`: 文件下载
+
+- React 表单
+
+  - `formik`
+  - `react-window`: 虚拟列表, 无限滚动
+
+- canvas 框架
+
+  - `konva`: 支持高性能动画、过渡、节点嵌套、分层、过滤、缓存、桌面和移动应用的事件处理等
+
+- WebGL
+
+  - `pixi.js`: WebGL 渲染器, 2D 库,在不了解 WebGL 的情况下享受硬件加速
+
+- 状态机
+
+  - `xstate`: 优先状态机,可视化状态及状态转换
+
+- 输入相关
+
+  - `imask`: 限制输入的内容
+
 - 移动端调试
 
   - `spy-debugger`
@@ -25,6 +51,7 @@
   - `glob`: 路径模式匹配
   - `configstore`: 配置(数据)持久化
   - `inquirer`: 通用命令行交互集合
+  - `ngrok`: 公网端口映射，本地端口映射为外部网站端口
 
 - github
 
@@ -42,6 +69,7 @@
 - 3D
 
   - `three`: three.js
+  - `aframe`: 用于构建虚拟现实体验的 web 框架
 
 - 文本编辑器
 
@@ -68,4 +96,21 @@
   - `tesseract.js`: wasm, 图像中的文字识别
 
 - 特殊字体
+
   - `figlet`: 完全实现 FIGfont 的 js 库
+
+- 字符编码转换
+
+  - `iconv-lite`
+
+## 版本管理
+
+> 发布 beta 版: version: `x.x.x-beta.x`
+
+> 安装 beta 版: npm i packageName@beta
+
+## scripts 说明
+
+> 执行流程
+
+`pre{cmd}` => `${cmd}` => `post${cmd}`

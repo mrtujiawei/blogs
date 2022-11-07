@@ -7,9 +7,9 @@
   - `jszip`: 生成压缩包
   - `file-saver`: 文件下载
 
-- React 表单
+- React
 
-  - `formik`
+  - `formik`: 表单
   - `react-window`: 虚拟列表, 无限滚动
 
 - canvas 框架

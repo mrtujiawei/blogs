@@ -147,7 +147,3 @@ deploy-job:
   script:
     - echo "deploy"
 ```
-
-## badge ##
-
-[badge](https://shields.io/)

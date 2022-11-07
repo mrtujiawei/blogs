@@ -56,21 +56,6 @@ FastDom (DOM操作读写分离)
 
 `Element.getClientRects`返回元素的位置，行内元素返回多个成员，与行数有关,换行符也会算进去
 
-```javascript
-// 兼容性处理
-// 下一次重绘前调用
-window.requestAnimFrame = (function() {
-    return window.requestAnimationFrame ||
-        window.webkitRequestAnimationFrame ||
-        window.mozRequestAnimationFrame ||
-        window.oRequestAnimationFrame ||
-        window.msRequestAnimationFrame ||
-        function(callback, element) {
-            window.setTimeout(callback, 1000 / 60)
-        }
-}());
-```
-
 获取元素位置属性
 
 ```javascript
@@ -180,17 +165,6 @@ scrollTop + clientHeight == scrollHeight
 x + scrollTop + clientHeight == scrollHeight
 ```
 
-4. 配置对象属性
-
-```javascript
-Object.defineProperty(obj, "name", {
-    value : "tujiawei",
-    writable : false,
-    configurable : true,
-    enumerable : false,
-});
-```
-
 ```javascript
 // 全局查找定义过的symbol
 // 如果定义过，就返回那个symbol，
@@ -297,12 +271,6 @@ source-map-explorer build/*.js
 
 // 测试打包速度
 speed-measure-webpack-plugin
-
-// 虚拟滚动, 横向竖向都有
-react-window
-
-// 单页预渲染 
-react-snap
 
 // 暴露模块到全局变量
 expose-loader 

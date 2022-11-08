@@ -227,14 +227,6 @@ var res = arr.copyWithin(3, 0);
 
 console.log(res); // 1 2 3 1 2
 
-var res = arr.find(v => {
-  return v == 2;
-}); // 如果有 返回原值，否则undefined
-
-arr.findIndex(v => {
-  return v == 2;
-}); // 返回下标
-
 (?:abc) \1不会匹配这个
 以?开头为 非捕获组
 (?=a) 后面跟a
@@ -265,21 +257,6 @@ https://alexkuz.github.io/webpack-chart/
 代码大小分析
 
 ```javascript
-// 根据source-map 分析
-// 需要安装source-map
-source-map-explorer build/*.js
-
-// 测试打包速度
-speed-measure-webpack-plugin
-
-// 暴露模块到全局变量
-expose-loader 
-use: 'expose-loader?$';
-
-// plugins 中加
-new webpack.ProvidePlugin({
-  $: 'jquery',
-});
 
 -! 禁用前置和正常loader
 ! 禁用普通loader
@@ -290,8 +267,6 @@ normal
 
 // canvas 多个图层处理效果
 globalCompositeOperation = '';
-
-// createjs
 ```
 
 ## Tribute ##

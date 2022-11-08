@@ -1,30 +1,34 @@
-# DOCKER #
+# DOCKER
 
-## 安装 ## 
+## 安装
 
 `sudo apt-get install docker.io`
 
-## docker 配置 ##
+## docker 配置
 
 修改镜像  
 `/etc/docker/daemon.json`
+
 ```json
 {
   "registry-mirrors": [
-    "https://docker.mirrors.ustc.edu.cn", 
-    "https://reg-mirror.qiniu.com", 
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://reg-mirror.qiniu.com",
     "http://hub-mirror.c.163.com",
     "https://docker.mirrors.ustc.edu.cn"
   ]
 }
 ```
 
-修改镜像端口映射,实际上是改iptable  
+修改镜像端口映射,实际上是改 iptable
+
 ```shell
 iptables -t nat -A  DOCKER -p tcp --dport 81 -j DNAT --to-destination 172.17.0.19:8012
 ```
-实际访问不能用localhost 需要用指定ip  
-直接commit 之后再run比较简单  
+
+实际访问不能用 localhost 需要用指定 ip  
+直接 commit 之后再 run 比较简单
+
 ```
 
 ## 命令 ##
@@ -61,3 +65,4 @@ iptables -t nat -A  DOCKER -p tcp --dport 81 -j DNAT --to-destination 172.17.0.1
 | ENV        | 指定环境变量                |
 | CMD        | 启动容器时执行的命令        |
 | ENTRYPOINT | 指定默认启动脚本            |
+```

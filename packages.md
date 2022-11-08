@@ -2,6 +2,12 @@
 
 曾经使用过的 npm 包
 
+- webpack
+
+  - `speed-measure-webpack-plugin`: 显示构建速度的插件
+  - `source-map-explorer`: 根据打包后的代码，分析代码构成来源
+  - `expose-loader`: 向全局中暴露模块
+
 - 下载相关
 
   - `jszip`: 生成压缩包

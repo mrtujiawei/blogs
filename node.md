@@ -1,55 +1,17 @@
-# node snippets #
-
-```javascript
-// 服务端推送
-const http = require("http");
-
-http.createServer(function (req, res) {
-  let fileName = "." + req.url;
-
-  if (fileName === "./stream") {
-    res.writeHead(200, {
-      "Content-Type":"text/event-stream",
-      "Cache-Control":"no-cache",
-      "Connection":"keep-alive",
-      "Access-Control-Allow-Origin": '*'
-    });
-
-    // 重连事件
-    res.write("retry: 10000\n");
-
-    // 触发事件
-    res.write("event: connecttime\n");
-
-    // 发送数据
-    res.write("data: " + (new Date()) + "\n\n");
-    res.write("data: " + (new Date()) + "\n\n");
-    res.write('id:msg1\n');
-    let count = 0;
-    interval = setInterval(function() {
-      // 发送ID:相当于保存个锚点,出错了从这里开始恢复
-      res.write('id:msg' + count + '\n');
-      res.write("data: " + (new Date()) + '---' + count + '---' + "\n\n");
-      count ++;
-    }, 1000);
-
-    req.connection.addListener("close", function () {
-      clearInterval(interval);
-    }, false);
-  }
-}).listen(4444);
-```
+# node snippets
 
 ## 远程调试
 
-`node --inspect-brk=[ip:port] xxx.js`
+> -brk 是暂停到第一行代码前
+> 默认情况下 会暂停到 第一个 debugger 所在行
+`node --inspect[-brk]=[ip:port] xxx.js`
 
-需要 chrome://inspect 配置 域名和ip
+需要 chrome://inspect 配置 域名和 ip
 
-## electron源码 加密
+## electron 源码 加密
 
 [electron 代码加密](https://github.com/toyobayashi/electron-asar-encrypt-demo)
 
 ## 编译器开发
 
-[c编译器](https://www.bilibili.com/medialist/play/181099947?from=space&business=space&sort_field=pubtime&tid=0&spm_id_from=333.999.0.0)
+[c 编译器](https://www.bilibili.com/medialist/play/181099947?from=space&business=space&sort_field=pubtime&tid=0&spm_id_from=333.999.0.0)

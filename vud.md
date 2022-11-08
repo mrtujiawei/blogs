@@ -1,9 +1,5 @@
 # vue3 源码学习
 
-## component
-
-直接挂载在 createAppContext 中的 context 属性上
-
 ## provide inject
 
 > 挂载或更新过程中, createComponentInstance
@@ -14,17 +10,6 @@
 再把新的属性挂载上去
 
 inject 的过程实际就是查找原型链
-
-```
-createComponentInstance (component.ts:438)
-mountComponent (renderer.ts:1293)
-processComponent (renderer.ts:1263)
-patch (renderer.ts:527)
-render (renderer.ts:2387)
-mount (apiCreateApp.ts:294)
-app.mount (index.ts:96)
-(anonymous) (index.js:45)
-```
 
 ## props 
 
@@ -73,150 +58,6 @@ update.active = false;
 2. 挂载 context
 3. 渲染
 
-### createVNode
-
-> 生成 vnode
-
-1. 判断是否是vnode. 是 => clone; 否 => 新建
-2. class props normalize
-3. shapeFlag 生成
-4. normalizeChildren 更新shapeFlag,为之后的patch做准备
-
-```typescript
-// encode the vnode type information into a bitmap
-const shapeFlag = isString(type)
-  ? ShapeFlags.ELEMENT
-  : __FEATURE_SUSPENSE__ && isSuspense(type)
-    ? ShapeFlags.SUSPENSE
-    : isTeleport(type)
-      ? ShapeFlags.TELEPORT
-      : isObject(type)
-        ? ShapeFlags.STATEFUL_COMPONENT
-        : isFunction(type)
-          ? ShapeFlags.FUNCTIONAL_COMPONENT
-          : 0
-```
-
-> vnode
-
-```typescript
-interface VNode<
-  HostNode = RendererNode,
-  HostElement = RendererElement,
-  ExtraProps = { [key: string]: any }
-> {
-  /**
-   * @internal
-   */
-  __v_isVNode: true
-
-  /**
-   * @internal
-   */
-  [ReactiveFlags.SKIP]: true
-
-  type: VNodeTypes
-  props: (VNodeProps & ExtraProps) | null
-  key: string | number | null
-  ref: VNodeNormalizedRef | null
-  /**
-   * SFC only. This is assigned on vnode creation using currentScopeId
-   * which is set alongside currentRenderingInstance.
-   */
-  scopeId: string | null
-  /**
-   * SFC only. This is assigned to:
-   * - Slot fragment vnodes with :slotted SFC styles.
-   * - Component vnodes (during patch/hydration) so that its root node can
-   *   inherit the component's slotScopeIds
-   * @internal
-   */
-  slotScopeIds: string[] | null
-  children: VNodeNormalizedChildren
-  component: ComponentInternalInstance | null
-  dirs: DirectiveBinding[] | null
-  transition: TransitionHooks<HostElement> | null
-
-  // DOM
-  el: HostNode | null
-  anchor: HostNode | null // fragment anchor
-  target: HostElement | null // teleport target
-  targetAnchor: HostNode | null // teleport target anchor
-  /**
-   * number of elements contained in a static vnode
-   * @internal
-   */
-  staticCount: number
-
-  // suspense
-  suspense: SuspenseBoundary | null
-  /**
-   * @internal
-   */
-  ssContent: VNode | null
-  /**
-   * @internal
-   */
-  ssFallback: VNode | null
-
-  // optimization only
-  shapeFlag: number
-  patchFlag: number
-  /**
-   * @internal
-   */
-  dynamicProps: string[] | null
-  /**
-   * @internal
-   */
-  dynamicChildren: VNode[] | null
-
-  // application root node only
-  appContext: AppContext | null
-
-  /**
-   * @internal attached by v-memo
-   */
-  memo?: any[]
-  /**
-   * @internal __COMPAT__ only
-   */
-  isCompatRoot?: true
-  /**
-   * @internal custom element interception hook
-   */
-  ce?: (instance: ComponentInternalInstance) => void
-}
-
-const vnode = {
-  __v_isVNode: true,
-  __v_skip: true,
-  type,
-  props,
-  key: props && normalizeKey(props),
-  ref: props && normalizeRef(props),
-  scopeId: currentScopeId,
-  slotScopeIds: null,
-  children,
-  component: null,
-  suspense: null,
-  ssContent: null,
-  ssFallback: null,
-  dirs: null,
-  transition: null,
-  el: null,
-  anchor: null,
-  target: null,
-  targetAnchor: null,
-  staticCount: 0,
-  shapeFlag,
-  patchFlag,
-  dynamicProps,
-  dynamicChildren: null,
-  appContext: null
-} as VNode
-```
-
 ### render patch
 
 > render 函数中的 patch
@@ -250,11 +91,6 @@ const effect = new ReactiveEffect(
   instance.scope // track it in component's effect scope
 );
 ```
-
-## effect scope
-
-> 还没搞明白干啥的，就要开始学源码了
-
 
 ## 指令
 

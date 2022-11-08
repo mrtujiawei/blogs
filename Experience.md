@@ -34,19 +34,11 @@
 
 最少知道原则
 
-6. PureComponent做浅比较，如果数据没变不会重新渲染
-
-19. React.memo(functionComponent) 缓存函数组件(组件只和传入的参数有关)
-
 24. vue keep-alive 中的include exclude 中的name是组件上的name属性，不是router上的name属性
 
 29. addEventListener(eventName, obj.method) 中method的this指向obj
 
 30. Vue事件修饰符会将除第一个参数以外的参数丢失
-
-37. webpack 打包 优化 拆包  {optimization: splitChunk: {chunks: 'all'}} 把node_modeles 下面的文件抽取出来打包成vendor文件
-
-39. postcss-loader  postcss-preset-env 需要在package.json里面配置browserList 
 
 41. eslint 插件配置 airbnb  --> eslint-config-airbnb-base eslint-plugin-import 
 
@@ -71,6 +63,7 @@
 62. 
 ```javascript
 // 分离库和自己写的代码
+// 把node_modeles 下面的文件抽取出来打包成vendor文件
 optimization: {
     splitChunks: {
         chunks: 'all'
@@ -88,8 +81,6 @@ new AddAssetHtmlWebpackPlugin({
 ```
 
 66. 不要全屏报错 overlay: false
-
-68. React: 尽量使用无状态组件，这样渲染效率比较高，因为不需要触发生命周期函数
 
 71. 表格
 

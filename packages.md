@@ -58,6 +58,7 @@
   - `configstore`: 配置(数据)持久化
   - `inquirer`: 通用命令行交互集合
   - `ngrok`: 公网端口映射，本地端口映射为外部网站端口
+  - `compressorjs`: 图片压缩
 
 - github
 
@@ -108,6 +109,13 @@
 - 字符编码转换
 
   - `iconv-lite`
+
+- 微前端
+  - `single-spa`
+
+- web component
+  - `lit`
+  - `carbon-components`
 
 ## 版本管理
 

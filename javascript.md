@@ -56,29 +56,6 @@ FastDom (DOM操作读写分离)
 
 `Element.getClientRects`返回元素的位置，行内元素返回多个成员，与行数有关,换行符也会算进去
 
-获取元素位置属性
-
-```javascript
-getBoundingClientRect()
-```
-
-性能监测
-
-```
-var observer = new PerformanceObserver( function ( list ) {
-    var perfEntries = list.getEntries( );
-    for ( var i = 0; i < perfEntries.length; i++ ) {
-      console.log(perfEntries[i]);
-    }
-} );
-
-observer.observe( { entryTypes: [ "longtask" ] } );
-
-for(let i = 0; i < 29900000; i++) {
-  // console.log(i);
-}
-```
-
 ## 函数参数传递的步骤 ##
 
 1. 创建对象；
@@ -150,12 +127,6 @@ grd.addColorStop(0.5, '#0f0');
 grd.addColorStop(1.0, '#00f');
 context.fillStyle = grd;
 context.fillRect(10,10, 210, 60);
-```
-
-DOM观察者
-
-```javascript
-MutationObserver
 ```
 
 ```
@@ -306,7 +277,6 @@ selection.deleteFromDocument();
 
 ## 性能指标 ##
 
-
 ```
 lighthouse (npm; chromeDevTools)
 webPageTest
@@ -367,7 +337,6 @@ const getExplorer = () => {
 }
 // 判断浏览器是否为IE
 const exportToExcel = (data, name) => {
-
 	// 判断是否为IE
 	if (getExplorer() == 'ie') {
 		tableToIE(data, name)
@@ -505,35 +474,6 @@ const table2excel = (column, data, excelName) => {
 
 export default table2excel
 
-```
-图片压缩 `https://github.com/fengyuanchen/compressorjs`
-```
-
-```
-gsap 动画库
-https://greensock.com/3-release-notes
-pixi.js 、three.js
-
-```
-
-```javascript
-function myNew(fn, ...args) {
-  const obj = {};
-  obj.__proto__ = fn.prototype;
-  fn.apply(fn, args);
-  return obj;
-};
-
-```
-
-## sonar qube 
-
-> 代码质量管理
-
-## 微前端框架
-
-> `single-spa`
-
 ## 代码调试
 
 1. chrome 导入项目文件  
@@ -541,10 +481,6 @@ function myNew(fn, ...args) {
 `Chrome DevTools > Sources > FileSystem > Add folder to workspace`
 
 2. chrome 会自动检测是否和当前网站的代码一致，如果是一致的，修改workspace中的文件会直接看到变化
-
-## 异常堆栈中忽略某个文件中的所有堆栈
-
-右键 `Add script to ignore list`
 
 ## shadow dom 
 
@@ -557,7 +493,3 @@ const shadow = el.attachShadow({ mode: 'open' });
 // innerHTML 中包含style或者link 引入样式
 shadow.innerHTML = `innerHTML`;
 ```
-
-## lit、carbon
-
-`web component` 函数库

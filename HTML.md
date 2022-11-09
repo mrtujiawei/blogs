@@ -138,10 +138,6 @@ html相关的东西
 <link rel="prerender" href="//example.com/next-page.html">
 ```
 
-## DOM 结构树 ##
-
-![DOM 结构树](/images/dom-tree.png)
-
 ## 节点类型 ##
 
 - 元素结点 => 1

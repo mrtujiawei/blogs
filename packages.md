@@ -59,6 +59,8 @@
   - `inquirer`: 通用命令行交互集合
   - `ngrok`: 公网端口映射，本地端口映射为外部网站端口
   - `compressorjs`: 图片压缩
+  - `multiparty`: 解析 formData
+  - `dotenv`: 加载项目环境变量 `.env`
 
 - github
 

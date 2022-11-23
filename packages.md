@@ -2,6 +2,9 @@
 
 曾经使用过的 npm 包
 
+- 性能测量
+  - `web-vitals`
+
 - webpack
 
   - `speed-measure-webpack-plugin`: 显示构建速度的插件

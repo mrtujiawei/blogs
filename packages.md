@@ -64,6 +64,7 @@
   - `compressorjs`: 图片压缩
   - `multiparty`: 解析 formData
   - `dotenv`: 加载项目环境变量 `.env`
+  - `bfj`: big-friendly json, 操作json数据的异步流函数，同步改异步，并尝试减少内存占用
 
 - github
 

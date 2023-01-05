@@ -11,6 +11,9 @@
   - `source-map-explorer`: 根据打包后的代码，分析代码构成来源
   - `expose-loader`: 向全局中暴露模块
 
+- vue 插件
+  - `vue-lazyload`: 图片懒加载
+
 - 下载相关
 
   - `jszip`: 生成压缩包

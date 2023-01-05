@@ -123,6 +123,9 @@
   - `lit`
   - `carbon-components`
 
+- 移动端
+  - `zepto`: `jQuery` 移动端精简版
+
 ## 版本管理
 
 > 发布 beta 版: version: `x.x.x-beta.x`

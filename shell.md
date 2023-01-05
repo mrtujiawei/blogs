@@ -197,9 +197,16 @@ scp {username}@{remote_url}:remote_path local_path
 2. 转 mp4 到 m3u8  
    `ffmpeg -i qinruzhe.mp4 -codec copy -vbsf h264_mp4toannexb -map 0 -f segment -segment_list qinruzhe.m3u8 -segment_time 9 qinruzhe_%0d.ts`
 
+   > 切割成多个.png文件
+   `ffmpeg -skip_frame nokey -i bysj-1.mp4 -an -vsync 0 keyframes%03d.png`
+
 3. 同类型转换，不只 mp3
    -t 指 output.mp3 的时长
    ffmpeg -i input.mp3 -ss hh:mm:ss -t hh:mm:ss -acodec copy output.mp3
+
+4. 视频压缩
+  > crf 18 - 28 之间，视频质量较好, 越大，压缩率越高
+  `ffmpeg -i input.mp4 -crf 40 -b:a 64k -preset veryslow d.mp4`
 
 ## ssh
 

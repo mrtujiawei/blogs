@@ -218,6 +218,18 @@ scp {username}@{remote_url}:remote_path local_path
 <!-- 4. 复制 id_rsa.pub 到远程 ~/.ssh/authorized_keys -->
 4. ssh-copy-id [{hostname}@]{ip}
 
+### 知道用户名密码，但是不知道服务器ip，且已知ip地址段
+
+```shell
+for ((i=2;i<255;i++))
+do
+  # 连接超时时间稍微短一点
+  # 内网不需要那么长的超时时间
+  ssh -o ConnectTimeout=3 "root@192.168.3.$i"
+done
+
+```
+
 ## python
 
 <!-- 直接下载网页中的视频 -->

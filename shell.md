@@ -215,7 +215,8 @@ scp {username}@{remote_url}:remote_path local_path
 
 2. 免密登录
 3. 本地生成 ssh-key `ssh-keygen -t rsa`
-4. 复制 id_rsa.pub 到远程 ~/.ssh/authorized_keys
+<!-- 4. 复制 id_rsa.pub 到远程 ~/.ssh/authorized_keys -->
+4. ssh-copy-id [{hostname}@]{ip}
 
 ## python
 

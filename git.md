@@ -85,8 +85,8 @@ git log -L :searchText:filename
 
 - branch types
   - master: 主分支，永远是可用的最新版本，不建议直接在该分支上开发
-  - develop: 集成分支，开发主分支，所有新功能以这个分支来创建自己的功能分支，改分支只做合并操作，不建议直接在该分支上开发
-  - feature: 功能分支，在 develop 上创建分支，已开发功能模块命名，功能测试正常后合并到 develop 分支
+  - develop: 集成分支，开发主分支，所有新功能以这个分支来创建自己的功能分支，该分支只做合并操作，不建议直接在该分支上开发
+  - feature: 功能分支，在 develop 上创建分支，以开发功能模块命名，功能测试正常后合并到 develop 分支
   - hotfix: 修复分支，紧急 bug 修改分支，在 master 分支上创建，修复完成后合并到 master
 
 ## CI 配置

@@ -19,6 +19,11 @@
   - `jszip`: 生成压缩包
   - `file-saver`: 文件下载
 
+- work 操作
+  - `docxtemplater` 解析 word
+  - `mammoth` word 预览
+  - `docx-preview` word 预览
+
 - React
 
   - `formik`: 表单

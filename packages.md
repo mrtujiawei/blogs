@@ -60,7 +60,7 @@
   - `echars`: 基于 JavaScript 的开源可视化图表库，支持 `canvas` 和 `svg`
   - `highcharts`: 兼容 IE6+、完美支持移动端、图表类型丰富、方便快捷的 HTML5 交互性图表库
   - `d3`: web 标准 数据可视化 js 库
-  - `photo-sphere-viewer`: 3D 全景预览
+  - `@photo-sphere-viewer/core`: 3D 全景预览
 
 - Node.js 相关
 

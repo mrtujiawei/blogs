@@ -414,6 +414,7 @@ $ tmux [-c {some commands]
 > 断开连接: `<C-b>d`
 > 返回到上一个 session: `<C-b>l`
 > 滚动: `<C-b>[`
+> 切换指定pane: `<C-b>q`
 
 > 显示所有会话
 > `tmux list-sessions`

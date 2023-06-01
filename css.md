@@ -218,6 +218,15 @@ display: -webkit-box;
 }
 ```
 
+- 不规则阴影
+
+```css
+.class {
+  flter: drop-shadow(x-offset y-offset shadow-size shadow-color);
+}
+
+```
+
 - 背景混合？？
 
 ```css

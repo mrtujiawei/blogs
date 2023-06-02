@@ -14,6 +14,11 @@
 - vue 插件
   - `vue-lazyload`: 图片懒加载
 
+- 网页快捷键
+
+  - `tinykeys`
+  - `mousetrap`
+
 - 下载相关
 
   - `jszip`: 生成压缩包

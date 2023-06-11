@@ -34,6 +34,7 @@
   - `formik`: 表单
   - `react-window`: 虚拟列表, 无限滚动
   - `react-lazy-load-image-component`: 图片懒加载
+  - `framer-motion`: 页面滚动事件监听
 
 - canvas 框架
 

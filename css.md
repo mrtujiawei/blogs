@@ -577,6 +577,7 @@ ios 有多个滚动容器时卡顿
 
 ```css
 // viewport-fit=cover条件
+constant(safe-area-inset-top);
 env(safe-area-inset-top);
 ```
 ### css灵感 ###

@@ -29,6 +29,10 @@ iptables -t nat -A  DOCKER -p tcp --dport 81 -j DNAT --to-destination 172.17.0.1
 实际访问不能用 localhost 需要用指定 ip  
 直接 commit 之后再 run 比较简单
 
+```shell
+$ docker commit xxx xxx:version
+$ docker run -itd --name xxx -p port:port xxx:version /bin/bash
+$ docker exec -it xxx /bin/bash
 ```
 
 ## 命令 ##

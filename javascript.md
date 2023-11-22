@@ -499,3 +499,6 @@ shadow.innerHTML = `innerHTML`;
 返回某个殿下的html元素数组
 elementsFromPoint
 ```
+
+> 手写播放器基础
+`https://w3c.github.io/webcodecs/samples/video-decode-display/`

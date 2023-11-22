@@ -208,6 +208,13 @@ scp {username}@{remote_url}:remote_path local_path
   > crf 18 - 28 之间，视频质量较好, 越大，压缩率越高
   `ffmpeg -i input.mp4 -crf 40 -b:a 64k -preset veryslow d.mp4`
 
+5. 截取视频某帧
+  > 前 n 帧
+  `ffmpeg -i input.mp4 -vframes {n} frame%03d.png`
+
+  > 第 n 帧
+  `ffmpeg -i 1.mp4 -filter_complex "select='eq(n,{n})'" -vframes 1 out1.jpg`
+
 ## ssh
 
 1. ssh 端口(9229)映射到本地 9221  

@@ -493,3 +493,9 @@ const shadow = el.attachShadow({ mode: 'open' });
 // innerHTML 中包含style或者link 引入样式
 shadow.innerHTML = `innerHTML`;
 ```
+
+
+```
+返回某个殿下的html元素数组
+elementsFromPoint
+```

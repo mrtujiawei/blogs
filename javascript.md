@@ -502,3 +502,11 @@ elementsFromPoint
 
 > 手写播放器基础
 `https://w3c.github.io/webcodecs/samples/video-decode-display/`
+
+## graphql
+
+```javascript
+// 基本类型
+Int Float String Boolean ID
+ID: 同 String ， 只是表明这个字段不适合人阅读
+```

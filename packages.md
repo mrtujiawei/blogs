@@ -28,6 +28,7 @@
   - `docxtemplater` 解析 word
   - `mammoth` word 预览
   - `docx-preview` word 预览
+  - `docx` word 操作
 
 - React
 

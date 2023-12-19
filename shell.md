@@ -215,6 +215,9 @@ scp {username}@{remote_url}:remote_path local_path
   > 第 n 帧
   `ffmpeg -i 1.mp4 -filter_complex "select='eq(n,{n})'" -vframes 1 out1.jpg`
 
+6. 获取视频元信息
+  `ffprobe -select_streams v -show_entries format=duration,size,bit_rate,filename -show_streams -v quiet -of csv="p=0" -of json -i {video}`
+
 ## ssh
 
 1. ssh 端口(9229)映射到本地 9221  

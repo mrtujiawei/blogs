@@ -160,6 +160,15 @@
 - 浏览器终端
   - `xterm`: 浏览器上模拟终端
 
+- lint
+  - `stylelint`: 样式检查器
+
+- 浏览器指纹
+  - `fingerprintjs`: https://github.com/fingerprintjs/fingerprintjs
+
+- 引导 新手指引
+  - `driver.js`
+
 ## 版本管理
 
 > 发布 beta 版: version: `x.x.x-beta.x`

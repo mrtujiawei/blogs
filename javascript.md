@@ -511,3 +511,20 @@ elementsFromPoint
 Int Float String Boolean ID
 ID: 同 String ， 只是表明这个字段不适合人阅读
 ```
+
+## 
+
+禁止body滚动
+
+```javascript
+  useEffect(() => {
+    const overflow = document.body.style.overflow
+    if (preview) {
+      document.body.style.overflow = 'hidden'
+    }
+
+    return () => {
+      document.body.style.overflow = overflow
+    }
+  }, [scroll])
+```

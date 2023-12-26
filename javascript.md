@@ -514,17 +514,21 @@ ID: 同 String ， 只是表明这个字段不适合人阅读
 
 ## 
 
-禁止body滚动
+禁止滚动
 
-```javascript
+```typescript
+export const useDisableScroll = (disable: boolean, el?: HTMLElement) => {
+  if (!el) {
+    el = document.body
+  }
   useEffect(() => {
     const overflow = document.body.style.overflow
-    if (preview) {
+    if (disable) {
       document.body.style.overflow = 'hidden'
+      return () => {
+        document.body.style.overflow = overflow
+      }
     }
-
-    return () => {
-      document.body.style.overflow = overflow
-    }
-  }, [scroll])
+  }, [disable])
+}
 ```

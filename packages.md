@@ -125,6 +125,7 @@
 
   - `exif-js`: 提取图片 EXIF 元数据的 js 库, 可判断图片是否反转 90 度
   - `tesseract.js`: wasm, 图像中的文字识别
+  - `react-advanced-cropper`: 图片剪裁
 
 - 特殊字体
 

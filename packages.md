@@ -85,6 +85,8 @@
   - `multiparty`: 解析 formData
   - `dotenv`: 加载项目环境变量 `.env`
   - `bfj`: big-friendly json, 操作json数据的异步流函数，同步改异步，并尝试减少内存占用
+  - `chokidar`: 文件监听
+  - `nw.js`: web 浏览器中直接操作 node 模块
 
 - github
 
@@ -171,6 +173,7 @@
 
 - 引导 新手指引
   - `driver.js`
+  - `intro.js`
 
 - 日志
   - `pino`

@@ -808,6 +808,15 @@ ios 中, 如果父级设置了 `-webkit-overflow-scrolling: touch;`, `z-index` �
 </div>
 ```
 
+## 滚动动画
+
+```css
+animation:
+animation-timeline:
+animation-range:
+
+```
+
 ```css
 /**
  * scrollIntoView 默认会到最顶上

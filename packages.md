@@ -24,6 +24,9 @@
   - `jszip`: 生成压缩包
   - `file-saver`: 文件下载
 
+- 文件处理
+  - `@react-pdf/renderer`: 前端pdf 支持下载
+
 - work 操作
   - `docxtemplater` 解析 word
   - `mammoth` word 预览

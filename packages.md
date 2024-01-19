@@ -66,6 +66,10 @@
   - `benz-amr-recorder`: 纯前端解码、播放、录音、编码 AMR 音频
   - `@ffmpeg/ffmpeg`: wasm,前端 ffmpeg 库
 
+- 前端数据库
+  - `dexie`
+  - `minimongo`
+
 - 数据可视化
 
   - `echars`: 基于 JavaScript 的开源可视化图表库，支持 `canvas` 和 `svg`
@@ -88,6 +92,7 @@
   - `chokidar`: 文件监听
   - `nw.js`: web 浏览器中直接操作 node 模块
   - `madge`: 分析模块依赖
+  - `volta`: node 版本管理 不在 npm 上
 
 - github
 

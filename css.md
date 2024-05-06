@@ -827,3 +827,61 @@ animation-range:
   scroll-padding-top: 100px;
 }
 ```
+
+## 变长列表
+
+> 比较丝滑的非固定长度的列表
+
+```jsx
+import { useEffect, useState } from 'react';
+
+const List = () => {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    const timeout = 1000;
+    const length = 2;
+    const timer = setInterval(() => {
+      setList((list) =>
+        list.concat(Array.from({ length }, (_, i) => list.length + i + 1))
+      );
+    }, timeout);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column-reverse',
+        height: '800px',
+        overflow: 'auto',
+        border: '1px solid #008c8c',
+      }}
+    >
+      <div style={{ flexGrow: 1 }}></div>
+      {list.map((item, index) => {
+        return (
+          <div
+            key={item}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+            className="item"
+          >
+            {index + 1}. {item}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+export default List;
+
+```

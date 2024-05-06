@@ -417,3 +417,12 @@ html相关的东西
 有损压缩  
 通过删除人眼不敏感的元素压缩图片  
 能用 jpeg 尽量用 jpeg
+
+## svg color
+
+```html
+fill="currentColor"
+svg {
+    color: #008c8c;
+}
+```

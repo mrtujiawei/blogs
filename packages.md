@@ -3,6 +3,7 @@
 曾经使用过的 npm 包
 
 - 性能测量
+
   - `web-vitals`
 
 - webpack
@@ -12,6 +13,7 @@
   - `expose-loader`: 向全局中暴露模块
 
 - vue 插件
+
   - `vue-lazyload`: 图片懒加载
 
 - 网页快捷键
@@ -25,9 +27,11 @@
   - `file-saver`: 文件下载
 
 - 文件处理
-  - `@react-pdf/renderer`: 前端pdf 支持下载
+
+  - `@react-pdf/renderer`: 前端 pdf 支持下载
 
 - work 操作
+
   - `docxtemplater` 解析 word
   - `mammoth` word 预览
   - `docx-preview` word 预览
@@ -70,6 +74,7 @@
   - `@ffmpeg/ffmpeg`: wasm,前端 ffmpeg 库
 
 - 前端数据库
+
   - `dexie`
   - `minimongo`
 
@@ -91,7 +96,7 @@
   - `compressorjs`: 图片压缩
   - `multiparty`: 解析 formData
   - `dotenv`: 加载项目环境变量 `.env`
-  - `bfj`: big-friendly json, 操作json数据的异步流函数，同步改异步，并尝试减少内存占用
+  - `bfj`: big-friendly json, 操作 json 数据的异步流函数，同步改异步，并尝试减少内存占用
   - `chokidar`: 文件监听
   - `nw.js`: web 浏览器中直接操作 node 模块
   - `madge`: 分析模块依赖
@@ -133,6 +138,7 @@
 - 手势
 
   - `hammerjs`: 多点触摸手势
+  - `pinch-zoom-js`: 缩放和拖动任何 DOM 元素的多点触控手势
 
 - 图片相关
 
@@ -149,42 +155,54 @@
   - `iconv-lite`
 
 - 微前端
+
   - `single-spa`
 
 - web component
+
   - `lit`
   - `carbon-components`
 
 - 移动端
+
   - `zepto`: `jQuery` 移动端精简版
 
 - 中文拼音转换
-  -  `pinyin-pro`
+
+  - `pinyin-pro`
 
 - gpu
+
   - `gpu.js`: 使用 gpu 运行耗时函数
 
 - player
+
   - `howler`: 音频播放器
 
 - 模糊搜索
+
   - `fuse.js`: 轻量级模糊搜索
   - `flexsearch`: 模糊搜索
 
 - 浏览器终端
+
   - `xterm`: 浏览器上模拟终端
 
 - lint
+
   - `stylelint`: 样式检查器
 
 - 浏览器指纹
+
   - `fingerprintjs`: https://github.com/fingerprintjs/fingerprintjs
 
 - 引导 新手指引
+
   - `driver.js`
   - `intro.js`
 
 - 日志
+
   - `pino`
 
 - 可执行文件打包

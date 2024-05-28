@@ -426,3 +426,16 @@ svg {
     color: #008c8c;
 }
 ```
+
+## office 类文件预览
+
+```
+https://view.officeapps.live.com/op/view.aspx?src={url}
+```
+
+```html
+<!-- pdf 预览 -->
+const src = {doc.url}#page={id}
+        
+<embed src={src} style={preStyle} key={`${httpsUrl}`} />;   
+```

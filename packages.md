@@ -208,6 +208,9 @@
 - 可执行文件打包
   - `nexe`: 可打包多个平台
 
+- APP
+  - `tauri-app`
+
 ## 版本管理
 
 > 发布 beta 版: version: `x.x.x-beta.x`

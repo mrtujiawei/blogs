@@ -211,6 +211,9 @@
 - APP
   - `tauri-app`
 
+- 货币符号转换
+  - `currency-symbol-map`
+
 ## 版本管理
 
 > 发布 beta 版: version: `x.x.x-beta.x`

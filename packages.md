@@ -153,6 +153,7 @@
 - 字符编码转换
 
   - `iconv-lite`
+  - `he`: HTML entities 字符和实体之间转换
 
 - 微前端
 

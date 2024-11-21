@@ -72,6 +72,7 @@
 
   - `benz-amr-recorder`: 纯前端解码、播放、录音、编码 AMR 音频
   - `@ffmpeg/ffmpeg`: wasm,前端 ffmpeg 库
+  - `@wavesurfer/react`: 波形显示及播放
 
 - 前端数据库
 

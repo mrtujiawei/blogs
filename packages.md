@@ -155,6 +155,7 @@
 
   - `iconv-lite`
   - `he`: HTML entities 字符和实体之间转换
+  - `jschardet`: 检测类型
 
 - 微前端
 

@@ -574,6 +574,12 @@ ios 有多个滚动容器时卡顿
 -webkit-overflow-scrolling: touch;
 ```
 
+内部容器滚动时，不影响外部容器
+
+```css
+overflow-behavior: contain;
+```
+
 
 ```css
 // viewport-fit=cover条件

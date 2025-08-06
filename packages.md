@@ -41,6 +41,7 @@
 
   - `formik`: 表单
   - `react-window`: 虚拟列表, 无限滚动
+  - `react-virtualized`: 虚拟列表, 无限滚动
   - `react-lazy-load-image-component`: 图片懒加载
   - `framer-motion`: 页面滚动事件监听
   - `react-infinite-scroller`: 无限滚动
@@ -50,6 +51,7 @@
 
   - `konva`: 支持高性能动画、过渡、节点嵌套、分层、过滤、缓存、桌面和移动应用的事件处理等
   - `fabric`: canvas 库
+  - `html2canvas`: dom 转 图
 
 - WebGL
 

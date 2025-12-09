@@ -47,6 +47,7 @@
   - `framer-motion`: 页面滚动事件监听
   - `react-infinite-scroller`: 无限滚动
   - `react-toastify`: 轻提示
+  - `kbar`: 命令面板
 
 - canvas 框架
 

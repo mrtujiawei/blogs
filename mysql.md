@@ -195,6 +195,63 @@ call rowIncrement();
 select * from demo.test;
 ```
 
+游标 demo 2
+
+```sql
+drop table if exists importhead;
+create table importhead (listnumber int comment '进货单编号', supplierid int comment '供货商编号', stockid int comment '仓库编号', operatorid int comment '操作员编号', totalquantity int comment '进货数量', totalvalue decimal(30, 3) comment '进货金额', recordingdate datetime comment '进货日期');
+insert into importhead values (1234, 1, 1, 1, 18, 171, '2020-12-12');
+
+drop table if exists importdetails;
+create table importdetails ( listnumber int comment '进货单号', itemnumber int comment '商品编号', quantity int comment '进货数量', importprice decimal(10, 3) comment '进货价格', importvalue decimal(30, 3) comment '进货金额');
+insert into importdetails values (1234, 1, 5, 33, 165);
+insert into importdetails values (1234, 2, 3, 2, 6);
+
+drop table if exists inventory;
+create table inventory ( stockid int comment '仓库编号', itemnumber int comment '商品编号', invquantity int comment '库存数量');
+insert into inventory values (1, 1, 10);
+insert into inventory values (1, 2, 20);
+
+drop table if exists goodsmaster;
+create table goodsmaster ( itemnumber int comment '商品编号', barcode int comment '商品条码', goodsname varchar(50) comment '商品名称', specification varchar(20) comment '商品规格', unit char(10) comment '单位', salesprice decimal(30, 3) comment '售价', avgimportprice decimal(30, 3) comment '平均进价');
+insert into goodsmaster values (1, '0001', '书', '16开', '本', 89, 30);
+insert into goodsmaster values (2, '0002', '笔', null, '支', 5, 3);
+
+drop procedure if exists importgoods;
+
+delimiter //
+create procedure importgoods(ilistnumber int)
+begin
+
+  declare done int default false;
+  declare cstockid, citemnumber, cquantity int;
+  declare cimportprice decimal(10, 3);
+
+  declare cursor_importgoods cursor for
+  select ih.stockid, id.itemnumber,id.importprice,id.quantity from importhead ih join importdetails id on ih.listnumber = id.listnumber where id.listnumber = ilistnumber;
+
+  declare continue handler for not found set done = true;
+
+  open cursor_importgoods;
+  fetch cursor_importgoods into cstockid, citemnumber, cimportprice, cquantity;
+
+  while not done do
+    update demo.goodsmaster a, inventory b set a.avgimportprice = (a.avgimportprice * b.invquantity + cimportprice * cquantity) / (b.invquantity + cquantity) 
+    where a.itemnumber = b.itemnumber and b.stockid = cstockid and a.itemnumber = citemnumber;
+    update inventory set invquantity = invquantity + cquantity where stockid = cstockid and itemnumber = citemnumber;
+    fetch cursor_importgoods into cstockid, citemnumber, cimportprice, cquantity;
+  end while;
+
+  close cursor_importgoods;
+end
+//
+delimiter ;
+
+call importgoods(1234);
+select * from goodsmaster;
+select * from inventory;
+```
+
 存储函数
 
 ```sql
@@ -322,4 +379,79 @@ from
   demo.membermaster
 where
   memberid = 2;
+```
+
+角色
+
+```sql
+drop role if exists 'stocker';
+
+--  创建角色
+create role 'stocker';
+
+--  赋予权限
+--  GRANT [PERMISSIONS] ON [TABLE] TO [ROLE];
+
+grant select on demo.goodsmaster to 'stocker';
+grant insert, delete, update, select on demo.invcount to 'stocker';
+
+grant select on demo.settlement to '';
+
+-- 查看权限
+show grants for 'stocker';
+
+-- 所有角色永久激活
+-- 默认是不启用的
+SET global activate_all_roles_on_login=ON;
+```
+
+用户
+
+```sql
+--  创建用户
+--  可以不用密码，但最好还是设置密码
+CREATE USER [USERNAME] [IDENTIFIED BY [PASSWORD]];
+
+-- 给用户授权 角色
+GRANT [ROLE] TO [USER];
+
+-- 给用户授权 直接
+GRANT [PERMISSIONS] ON [TABLE] TO [USER];
+
+-- 查看用户权限
+SHOW GRANTS FOR [USER];
+
+```
+
+日志
+
+```sql
+-- 显示日志相关变量
+SHOW VARIABLES LIKE '%general%';
+
+-- 开启日志记录
+SET GLOBAL general_log = 'ON';
+
+-- 关闭日志记录
+SET GLOBAL general_log = 'OFF';
+```
+
+慢查询配置
+
+```sql
+-- 表示开启慢查询日志
+-- 系统将会对慢查询进行记录
+slow-query-log=1
+ 
+-- 配置慢查询日志的名称
+-- 这里没有指定文件夹，默认就是数据目录
+slow_query_log_file="[LOG_NAME]"
+ 
+-- 表示慢查询的标准是查询执行时间超过N秒
+long_query_time=[N]
+
+-- 查询扫描过的最少记录数
+-- 如果查询扫描过的记录数大于等于这个变量的值，并且查询执行时间超过 long_query_time 的值，
+-- 那么，这个查询就被记录到慢查询日志中；反之，则不被记录到慢查询日志中。
+min_examined_row_limit
 ```

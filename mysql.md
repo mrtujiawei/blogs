@@ -455,3 +455,34 @@ long_query_time=[N]
 -- 那么，这个查询就被记录到慢查询日志中；反之，则不被记录到慢查询日志中。
 min_examined_row_limit
 ```
+
+数据备份
+
+```sql
+-- 备份表
+mysqldump -h [{HOST}] -u [{USERNAME}] -p [{PASSWORD}] [{DATABASE}] [{TABLE_NAMES}] > {BACKUP_FILE}
+
+-- 备份库
+mysqldump -h {HOST} -u {USERNAME} -p {PASSWORD} --databases {DATABASE} [{DATABASE}, ...] > {BACKUP_FILE}
+
+-- 备份所有库
+mysqldump -h {HOST} -u {USERNAME} -p {PASSWOrD} --all-databases > {BACKUP_FILE}
+```
+
+数据导出
+
+```sql
+SELECT {FIELDS} INTO OUTFILE [FILENAME]
+FIELDS TERMINATED BY {COLUMN_DELIMITER}
+LINES TERMINATED BY {LINE_DELIMITER}
+FROM [TABLE];
+```
+
+数据导入
+
+```
+LOAD DATA INFILE {FILENAME}
+INTO TABLE {TABLE}
+FIELDS TERMINATED BY {COLUMN_DELIMITER}
+LINES TERMINATED BY {LINE_DELIMITER};
+```
